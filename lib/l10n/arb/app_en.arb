@@ -1,0 +1,9 @@
+{
+    "@@locale": "en",
+    
+    "appName" : "Musicify",
+    "eMail" : "E-mail",
+    "password" : "Password",
+    "login" : "Login"
+    
+}

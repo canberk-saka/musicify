@@ -1,0 +1,37 @@
+name: musicify
+description: spotify control
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  bloc: ^8.1.4
+  dio: ^5.8.0+1
+  envied: ^1.1.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_localizations:
+    sdk: flutter
+  go_router: ^14.7.2 
+  intl: ^0.19.0
+  json_annotation: ^4.9.0
+  
+
+
+dev_dependencies:
+  bloc_test: ^9.1.7
+  build_runner: ^2.4.14
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.9.3
+
+  mocktail: ^1.0.4
+  very_good_analysis: ^6.0.0
+  
+
+flutter:
+  uses-material-design: true
+  generate: true
