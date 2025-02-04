@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:musicify/constants/static_variables.dart';
 import 'package:musicify/navigation/app_routes.dart';
 import 'package:musicify/screens/auth/view/spotify_auth.dart';
 import 'package:musicify/screens/home/view/home_screen.dart';
@@ -19,6 +20,7 @@ abstract final class AppRouter {
     redirect: (context, state) {
       if (state.uri.host == 'spotify_auth') {
         log(state.uri.queryParameters['code'] ?? '');
+        StaticVariables.token = state.uri.queryParameters['code'] ?? '';
       }
       return null;
     },
