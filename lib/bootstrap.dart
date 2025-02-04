@@ -4,7 +4,11 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
+///{@template BlocObserver}
+///Değişikliklerin gözlenmesi
+///{@endtemplate}
 class AppBlocObserver extends BlocObserver {
+  ///{@macro BlocObserver}
   const AppBlocObserver();
 
   @override
@@ -20,6 +24,7 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
+///Bootstrap fonksiyonu
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);

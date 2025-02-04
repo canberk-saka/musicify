@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 abstract base class BaseTheme {
   ///ColorScheme'in tanımlanması
   ColorScheme get colorScheme => ColorScheme.fromSeed(
-        seedColor: Colors.green,
+        seedColor: Colors.grey,
         brightness: brightness,
         dynamicSchemeVariant: DynamicSchemeVariant.fruitSalad,
       );
@@ -12,6 +12,9 @@ abstract base class BaseTheme {
   ///ThemeData'nın oluşturulması
   ThemeData get theme => ThemeData(
         colorScheme: colorScheme,
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+        ),
       );
 
   ///Brightness değerinin alınması
