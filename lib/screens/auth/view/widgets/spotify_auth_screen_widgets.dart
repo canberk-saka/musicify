@@ -1,11 +1,17 @@
 part of '../../view/spotify_auth.dart';
 
+///Spotify Auth ekranının widgetları
 base mixin SpotifyAuthScreenWidgets on State<SpotifyAuthScreen> {
+  ///Spotify client id'sini tutan değişken
   final String clientId = Env.clientId;
+
+  ///Yönlendirme URI'sini tutan değişken
   final String redirectUri = Env.redirectUri;
+
+  ///Spotify scope'larını tutan değişken
   final String scope = 'user-read-private user-read-email';
 
-  // Rastgele string üreten fonksiyon
+  /// Rastgele string üreten fonksiyon
   String generateRandomString(int length) {
     const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     final random = Random();
