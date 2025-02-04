@@ -3,6 +3,10 @@
   "appName" : "Musicify",
   "eMail" : "E-posta",
   "password" : "Şifre",
-  "login" : "Giriş Yap"
+  "login" : "Giriş Yap",
+  "spotifyAuth" : "Spotify Doğrulaması",
+  "loginWithSpotify" : "Spotify ile Giriş Yap"
+
+  
 
 }

@@ -4,6 +4,8 @@
     "appName" : "Musicify",
     "eMail" : "E-mail",
     "password" : "Password",
-    "login" : "Log In"
+    "login" : "Log In",
+    "spotifyAuth" : "Spotify Authentication",
+    "loginWithSpotify" : "Log in With Spotify"
     
 }
