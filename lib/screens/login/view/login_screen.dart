@@ -19,10 +19,8 @@ final class LoginScreen extends StatefulWidget {
 
 final class _LoginScreenState extends State<LoginScreen> with LoginScreenWidgets {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(),
-      body: body(),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: _appBar(),
+        body: _body(),
+      );
 }

@@ -1,11 +1,11 @@
 ///Sabit değişkenlerin tutulduğu class
 abstract final class StaticVariables {
-  static String _token = '';
+  ///Kullanıcıdan alınan token değeri
+  static String token = '';
 
-  ///Token
-  static String get token => _token;
+  ///Auth sonucunda alınan code değeri
+  static String code = '';
 
-  static set token(String token) {
-    _token = token;
-  }
+  ///Code verifier değeri
+  static String codeVerifier = '';
 }

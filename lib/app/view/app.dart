@@ -12,15 +12,13 @@ class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: LightTheme().theme,
-      darkTheme: DarkTheme().theme,
-      themeMode: ThemeMode.dark,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: AppRouter.router,
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: LightTheme().theme,
+        darkTheme: DarkTheme().theme,
+        themeMode: ThemeMode.dark,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        routerConfig: AppRouter.router,
+      );
 }

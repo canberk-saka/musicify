@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
-import 'dart:math' hide log;
+import 'dart:math' show Random;
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:musicify/constants/static_variables.dart';
 import 'package:musicify/env/env.dart';
 import 'package:musicify/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -22,10 +25,8 @@ final class SpotifyAuthScreen extends StatefulWidget {
 
 final class _SpotifyAuthScreenState extends State<SpotifyAuthScreen> with SpotifyAuthScreenWidgets {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(),
-      body: _body(),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: _appBar(),
+        body: _body(),
+      );
 }
