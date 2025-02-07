@@ -13,11 +13,13 @@ abstract final class AppRouter {
 
   ///router
   static final router = GoRouter(
+    debugLogDiagnostics: true,
     initialLocation: AppRoutes.login.path,
     navigatorKey: navigatorKey,
     redirect: (context, state) {
       if (state.uri.host == 'spotify_auth') {
         StaticVariables.code = state.uri.queryParameters['code'] ?? '';
+        return AppRoutes.home.path;
       }
       return null;
     },

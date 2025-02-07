@@ -13,7 +13,7 @@ final class UserApiManager extends BaseApiManager {
   ///Kullanıcı bilgilerini getirme işlemi
   Future<User> getUser() async {
     ///Kullanıcı bilgileri
-    final user = await dioGet(BaseUrlConstants.spotifyBaseApiUrl.url, User(), queryParams: {}, pathParams: []);
+    final user = await dioGet(ControllerConstants.me.url, User(), queryParams: {}, pathParams: []);
     return user;
   }
 

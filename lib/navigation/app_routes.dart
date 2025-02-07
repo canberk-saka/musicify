@@ -7,7 +7,7 @@ enum AppRoutes {
   home('home'),
 
   ///spotify auth sayfası
-  spotifyAuth('spotify-auth');
+  spotifyAuth('spotify_auth');
 
   const AppRoutes(this.name);
 
@@ -15,5 +15,5 @@ enum AppRoutes {
   final String name;
 
   ///Sayfa path'i
-  String get path => name == 'home' ? '/' : '/$name';
+  String get path => '/$name';
 }

@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:musicify/base/base_state.dart';
-import 'package:musicify/data/datasources/remote/auth_api_manager.dart';
 import 'package:musicify/screens/home/cubit/home_cubit.dart';
 
 part '../view/widgets/home_screen_widgets.dart';
@@ -10,31 +11,29 @@ part '../view/widgets/home_screen_widgets.dart';
 ///Ana Sayfa Ekranı
 ///{@endtemplate}
 
-class HomeScreen extends StatefulWidget {
-  ///{macro homeScreen}
+class HomeScreen extends StatelessWidget {
+  ///{@macro homeScreen}πgo
   const HomeScreen({super.key});
-
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  Widget build(BuildContext context) => BlocProvider<HomeCubit>(
+        create: (_) => HomeCubit(),
+        child: const HomeScreenView(),
+      );
 }
 
-final class _HomeScreenState extends BaseState<HomeScreen, HomeCubit> with HomeScreenWidgets {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await AuthApiManager().getAuth();
-      await read.getUser();
-    });
-  }
+///{@macro homeScreen}
+class HomeScreenView extends StatefulWidget {
+  ///{macro homeScreen}
+  const HomeScreenView({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (context) => HomeCubit(),
-        child: Scaffold(
-          appBar: _appBar(),
-          body: _body(),
-        ),
+  State<HomeScreenView> createState() => _HomeScreenViewState();
+}
+
+final class _HomeScreenViewState extends BaseState<HomeScreenView, HomeCubit> with HomeScreenWidgets {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: _appBar(),
+        body: _body(),
       );
 }

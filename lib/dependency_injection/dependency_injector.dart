@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get_it/get_it.dart';
 import 'package:musicify/data/datasources/remote/auth_api_manager.dart';
+import 'package:musicify/data/datasources/remote/user_api_manager.dart';
 import 'package:musicify/dependency_injection/interface/injectable_interface.dart';
 
 ///Bağımlılıkları kontrol etme sınıfı
@@ -10,9 +11,8 @@ abstract final class DependencyInjector {
 
   ///Bağımlılıkları yükleme işlemi
   static Future<void> init() async {
-    await lazyRegisterer<AuthApiManager>(
-      AuthApiManager(),
-    );
+    await lazyRegisterer(AuthApiManager());
+    await lazyRegisterer(UserApiManager());
   }
 
   ///Bağımlılıkları kontrol etme işlemi
@@ -20,8 +20,6 @@ abstract final class DependencyInjector {
     try {
       if (_getIt.isRegistered<T>()) {
         await reset<T>();
-        // _getIt.unregister<T>();
-        // lazyRegisterer<T>(object);
         return;
       }
       _getIt.registerLazySingleton<T>(() => object);

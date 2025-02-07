@@ -1,7 +1,7 @@
 part of '../../view/home_screen.dart';
 
 ///Home ekranının widgetları
-base mixin HomeScreenWidgets on State<HomeScreen> {
+base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
   /// Kullanıcı bilgilerini al
   // Future<void> _getUserInfo() async {
   //   final auth = AuthApiManager();
@@ -20,13 +20,13 @@ base mixin HomeScreenWidgets on State<HomeScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () async {
+                await context.read<HomeCubit>().getAuth();
+                //TODO(@canberk-saka): dioGet'i düzelt
                 await context.read<HomeCubit>().getUser();
+                log('User: ${context.read<HomeCubit>().state.user}');
               },
               child: const Text('Get User'),
             ),
-          ),
-          BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) => Text(state.user?.email ?? 'deneme'),
           ),
         ],
       );

@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:musicify/base/base_cubit.dart';
 
 ///State için base class
-abstract base class BaseState<T extends StatefulWidget, C extends Cubit<dynamic>> extends State<T> {
+abstract base class BaseState<T extends StatefulWidget, R extends BaseCubit<Equatable>> extends State<T> {
   ///read çağırma metodu
-  C get read => context.read<C>();
+  // R get read => context.read<R>();
 }
