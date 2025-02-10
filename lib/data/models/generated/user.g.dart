@@ -23,7 +23,9 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
           : Followers.fromJson(json['followers'] as Map<String, dynamic>),
       href: json['href'] as String?,
       id: json['id'] as String?,
-      images: json['images'] as List<dynamic>?,
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => ImageElements.fromJson(e as Map<String, dynamic>))
+          .toList(),
       product: json['product'] as String?,
       type: json['type'] as String?,
       uri: json['uri'] as String?,
@@ -40,7 +42,8 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       if (instance.followers?.toJson() case final value?) 'followers': value,
       if (instance.href case final value?) 'href': value,
       if (instance.id case final value?) 'id': value,
-      if (instance.images case final value?) 'images': value,
+      if (instance.images?.map((e) => e.toJson()).toList() case final value?)
+        'images': value,
       if (instance.product case final value?) 'product': value,
       if (instance.type case final value?) 'type': value,
       if (instance.uri case final value?) 'uri': value,

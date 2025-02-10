@@ -3,6 +3,7 @@ import 'package:musicify/data/interfaces/jsonable_interface.dart';
 import 'package:musicify/data/models/explicit_content.dart';
 import 'package:musicify/data/models/external_urls.dart';
 import 'package:musicify/data/models/followers.dart';
+import 'package:musicify/data/models/image_elements.dart';
 
 part 'generated/user.g.dart';
 
@@ -63,7 +64,7 @@ class User implements JsonableInterface<User> {
 
   ///Kullanıcının resimlerini tutar
   @JsonKey(name: 'images')
-  List<dynamic>? images;
+  List<ImageElements>? images;
 
   ///Kullanıcının premium olma durmunu tutar
   @JsonKey(name: 'product')

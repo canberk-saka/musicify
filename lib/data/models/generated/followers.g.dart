@@ -7,7 +7,7 @@ part of '../followers.dart';
 // **************************************************************************
 
 Followers _$FollowersFromJson(Map<String, dynamic> json) => Followers(
-      href: json['href'],
+      href: json['href'] as String?,
       total: (json['total'] as num?)?.toInt(),
     );
 
