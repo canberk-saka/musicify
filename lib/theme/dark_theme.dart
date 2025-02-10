@@ -5,4 +5,7 @@ import 'package:musicify/theme/base_theme.dart';
 final class DarkTheme extends BaseTheme {
   @override
   Brightness get brightness => Brightness.dark;
+
+  @override
+  Color get appBarColor => throw UnimplementedError();
 }

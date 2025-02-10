@@ -11,6 +11,7 @@ abstract base class BaseTheme {
 
   ///ThemeData'nın oluşturulması
   ThemeData get theme => ThemeData(
+        appBarTheme: AppBarTheme(color: colorScheme.surfaceContainerLow),
         colorScheme: colorScheme,
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
@@ -19,4 +20,7 @@ abstract base class BaseTheme {
 
   ///Brightness değerinin alınması
   Brightness get brightness;
+
+  ///AppBar renginin alınması
+  Color get appBarColor;
 }
