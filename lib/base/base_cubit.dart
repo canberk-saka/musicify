@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///{@endtemplate}
 abstract class BaseCubit<T extends Equatable> extends Cubit<T> {
   ///{@macro baseCubit}
-  BaseCubit(T state) : super(state);
+  BaseCubit(super.state);
 
   @override
   void emit(T state) {
