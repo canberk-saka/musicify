@@ -6,6 +6,10 @@
     "password" : "Password",
     "login" : "Log In",
     "spotifyAuth" : "Spotify Authentication",
-    "loginWithSpotify" : "Log in With Spotify"
+    "loginWithSpotify" : "Log in With Spotify",
+    "dontHaveAccount" : "Don't have an account?",
+    "signUp" : "Sign Up",
+    "confirmPassword":"Confirm Password"
+
     
 }

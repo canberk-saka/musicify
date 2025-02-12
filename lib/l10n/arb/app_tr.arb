@@ -5,7 +5,10 @@
   "password" : "Şifre",
   "login" : "Giriş Yap",
   "spotifyAuth" : "Spotify Doğrulaması",
-  "loginWithSpotify" : "Spotify ile Giriş Yap"
+  "loginWithSpotify" : "Spotify ile Giriş Yap",
+  "dontHaveAccount" : "Hesabınız yok mu?",
+  "signUp" : "Kayıt Ol",
+  "confirmPassword" : "Şifreyi Onayla"
 
   
 
