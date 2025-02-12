@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,9 +14,7 @@ abstract base class BaseState<T extends StatefulWidget, R extends BaseCubit<Equa
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      log(timeStamp.toString(), name: 'Time Stamp');
-    });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     super.initState();
   }
 }

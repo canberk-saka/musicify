@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///{@template baseCubit}
 ///Base Cubit
 ///{@endtemplate}
-abstract class BaseCubit<T extends Equatable> extends Cubit<T> {
+abstract base class BaseCubit<T extends Equatable> extends Cubit<T> {
   ///{@macro baseCubit}
   BaseCubit(super.state);
 
