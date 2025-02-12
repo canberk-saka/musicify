@@ -9,7 +9,9 @@
     "loginWithSpotify" : "Log in With Spotify",
     "dontHaveAccount" : "Don't have an account?",
     "signUp" : "Sign Up",
-    "confirmPassword":"Confirm Password"
+    "confirmPassword":"Confirm Password",
+    "registerFailed":"Registration failed",
+    "registerSuccess":"Registration successful"
 
     
 }

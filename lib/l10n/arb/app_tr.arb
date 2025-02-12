@@ -8,7 +8,9 @@
   "loginWithSpotify" : "Spotify ile Giriş Yap",
   "dontHaveAccount" : "Hesabınız yok mu?",
   "signUp" : "Kayıt Ol",
-  "confirmPassword" : "Şifreyi Onayla"
+  "confirmPassword" : "Şifreyi Onayla",
+  "registerFailed" : "Kayıt başarısız",
+  "registerSuccess" : "Kayıt başarılı"
 
   
 
