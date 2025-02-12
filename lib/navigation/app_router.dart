@@ -5,6 +5,7 @@ import 'package:musicify/navigation/app_routes.dart';
 import 'package:musicify/screens/auth/view/spotify_auth.dart';
 import 'package:musicify/screens/home/view/home_screen.dart';
 import 'package:musicify/screens/login/view/login_screen.dart';
+import 'package:musicify/screens/sign_up/view/sign_up_screen.dart';
 
 ///Uygulamanın route işlemleri
 abstract final class AppRouter {
@@ -28,6 +29,11 @@ abstract final class AppRouter {
         path: AppRoutes.login.path,
         name: AppRoutes.login.name,
         pageBuilder: (context, state) => const MaterialPage(child: LoginScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.signUp.path,
+        name: AppRoutes.signUp.name,
+        pageBuilder: (context, state) => const MaterialPage(child: SignUpScreen()),
       ),
       GoRoute(
         path: AppRoutes.home.path,

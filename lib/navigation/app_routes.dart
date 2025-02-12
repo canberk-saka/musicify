@@ -3,6 +3,9 @@ enum AppRoutes {
   ///login sayfası
   login('login'),
 
+  ///Kayıt olma sayfası
+  signUp('signUp'),
+
   ///home sayfası
   home('home'),
 
