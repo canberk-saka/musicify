@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "273187228756",
+    "project_id": "musicify-ee502",
+    "storage_bucket": "musicify-ee502.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273187228756:android:cbd7ba5457d0b10ec431c1",
+        "android_client_info": {
+          "package_name": "com.canberk.musicify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFtwZj-TgLeo3liSpd18hDaXruCQVYeVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273187228756:android:d18a441480c32c9ac431c1",
+        "android_client_info": {
+          "package_name": "com.canberk.musicify.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFtwZj-TgLeo3liSpd18hDaXruCQVYeVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

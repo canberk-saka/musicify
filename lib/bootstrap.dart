@@ -2,7 +2,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:musicify/dependency_injection/dependency_injector.dart';
+import 'package:musicify/firebase_options.dart';
 
 ///{@template BlocObserver}
 ///Değişikliklerin gözlenmesi
@@ -31,8 +34,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   Bloc.observer = const AppBlocObserver();
-
+  await DependencyInjector.init();
   // Add cross-flavor configuration here
-
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(await builder());
 }

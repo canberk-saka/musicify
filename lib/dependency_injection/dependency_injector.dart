@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:get_it/get_it.dart';
+import 'package:musicify/data/datasources/remote/album_api_manager.dart';
 import 'package:musicify/data/datasources/remote/auth_api_manager.dart';
+import 'package:musicify/data/datasources/remote/firebase/firebase_auth_manager.dart';
 import 'package:musicify/data/datasources/remote/user_api_manager.dart';
 import 'package:musicify/dependency_injection/interface/injectable_interface.dart';
 
@@ -13,6 +15,8 @@ abstract final class DependencyInjector {
   static Future<void> init() async {
     await lazyRegisterer(AuthApiManager());
     await lazyRegisterer(UserApiManager());
+    await lazyRegisterer(AlbumApiManager());
+    await lazyRegisterer(FirebaseAuthManager());
   }
 
   ///Bağımlılıkları kontrol etme işlemi
