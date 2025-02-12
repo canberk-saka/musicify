@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:musicify/base/base_state.dart';
+import 'package:musicify/data/datasources/remote/firebase/firebase_auth_manager.dart';
+import 'package:musicify/dependency_injection/dependency_injector.dart';
 import 'package:musicify/navigation/app_router.dart';
 import 'package:musicify/navigation/app_routes.dart';
 import 'package:musicify/screens/login/cubit/cubit/login_screen_cubit.dart';

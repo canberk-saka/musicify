@@ -12,7 +12,7 @@ part 'home_state.dart';
 ///{@template homeCubit}
 ///Home Sayfası için Cubit
 ///{@endtemplate}
-class HomeCubit extends BaseCubit<HomeState> {
+final class HomeCubit extends BaseCubit<HomeState> {
   ///{@macro homeCubit}
   HomeCubit() : super(const HomeState());
 

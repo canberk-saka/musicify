@@ -2,6 +2,10 @@ part of '../../view/login_screen.dart';
 
 ///Login ekranının widgetları
 base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   ///Login ekranı appBarı'ı
   AppBar _appBar() => AppBar(
         backgroundColor: Colors.transparent,
@@ -12,6 +16,7 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
   Padding _body() => Padding(
         padding: const EdgeInsets.all(15),
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,11 +38,13 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                 spacing: 25,
                 children: [
                   MusicifyTextField(
+                    controller: _emailController,
                     labelText: l10n.eMail,
                     icon: const Icon(Icons.email),
                   ),
                   BlocBuilder<LoginScreenCubit, LoginScreenState>(
                     builder: (context, state) => MusicifyTextField.obscure(
+                      controller: _passwordController,
                       labelText: l10n.password,
                       isObsecure: state.isObscure,
                       changeObscure: () => read.changeObscure(),
@@ -47,8 +54,13 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: ElevatedButton(
-                      onPressed: () {
-                        AppRouter.push(AppRoutes.spotifyAuth);
+                      onPressed: () async {
+                        final result = await DependencyInjector.read<FirebaseAuthManager>()
+                            .signInWithEmailAndPassword(_emailController.text, _passwordController.text);
+
+                        if (result?.user != null) {
+                          await AppRouter.push(AppRoutes.spotifyAuth);
+                        }
                       },
                       child: Text(l10n.login),
                     ),
@@ -69,15 +81,6 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
               ),
             ],
           ),
-        ),
-      );
-
-  ///Giriş ekranındaki textField widget'ı
-  TextFormField textFieldWidget(String text, Icon icon) => TextFormField(
-        decoration: InputDecoration(
-          labelText: text,
-          icon: icon,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
         ),
       );
 }
