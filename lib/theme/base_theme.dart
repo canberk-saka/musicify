@@ -13,6 +13,14 @@ abstract base class BaseTheme {
   ThemeData get theme => ThemeData(
         appBarTheme: AppBarTheme(color: colorScheme.surfaceContainerLow),
         colorScheme: colorScheme,
+        scrollbarTheme: ScrollbarThemeData(
+          thumbColor: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.hovered) ? colorScheme.primary : colorScheme.primaryContainer,
+          ),
+          thickness: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.hovered) ? 10 : 5,
+          ),
+        ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
         ),

@@ -12,7 +12,13 @@ enum ControllerConstants implements ApiUrlInterface {
   me('/me'),
 
   ///Albüm bilgileri için albums controller
-  albums('/albums');
+  albums('/albums'),
+
+  ///Yeni yayınlananlar için browse controller
+  browse('/browse'),
+
+  ///Yeni yayınlananlar için new-releases controller
+  newRealeases('/new-releases');
 
   const ControllerConstants(this.url);
 
