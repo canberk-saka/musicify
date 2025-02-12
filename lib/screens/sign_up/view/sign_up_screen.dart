@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:musicify/base/base_state.dart';
+import 'package:musicify/data/datasources/remote/firebase/firebase_auth_manager.dart';
+import 'package:musicify/dependency_injection/dependency_injector.dart';
 import 'package:musicify/screens/sign_up/cubit/sign_up_cubit.dart';
 import 'package:musicify_widgets/musicify_widgets.dart';
 

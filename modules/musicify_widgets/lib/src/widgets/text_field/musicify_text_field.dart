@@ -7,6 +7,7 @@ class MusicifyTextField extends StatefulWidget {
   ///TextField Widget'ı
   const MusicifyTextField({
     required this.labelText,
+    required this.controller,
     super.key,
     this.hintText,
     this.icon,
@@ -18,6 +19,7 @@ class MusicifyTextField extends StatefulWidget {
     required this.labelText,
     required this.isObsecure,
     required this.changeObscure,
+    required this.controller,
     super.key,
     this.hintText,
     this.icon,
@@ -38,6 +40,9 @@ class MusicifyTextField extends StatefulWidget {
   ///Şifre gizleme fonksiyonu
   final void Function()? changeObscure;
 
+  ///TextField controller'ı
+  final TextEditingController controller;
+
   @override
   State<MusicifyTextField> createState() => _MusicifyTextFieldState();
 }
@@ -46,6 +51,7 @@ class _MusicifyTextFieldState extends State<MusicifyTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       obscureText: widget.isObsecure!,
       decoration: InputDecoration(
         prefixIcon: widget.icon,
