@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/bracket/fvm/versions/stable/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/bracket/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/bracket/Desktop/development/musicify/android/app/.cxx/Debug/6i3a5y5t/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/bracket/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/bracket/Desktop/development/musicify/android/app/.cxx/Debug/6i3a5y5t/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

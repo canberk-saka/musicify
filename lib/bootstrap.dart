@@ -34,6 +34,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   Bloc.observer = const AppBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
   await DependencyInjector.init();
   // Add cross-flavor configuration here
   WidgetsFlutterBinding.ensureInitialized();

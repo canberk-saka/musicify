@@ -13,6 +13,8 @@ class NewReleasesAlbum implements JsonableInterface<NewReleasesAlbum> {
   NewReleasesAlbum({
     this.albums,
   });
+
+  ///Json'u newReleasesAlbum nesnesine çevirir
   factory NewReleasesAlbum.fromJson(Map<String, dynamic> json) => _$NewReleasesAlbumFromJson(json);
 
   ///Albümleri tutar

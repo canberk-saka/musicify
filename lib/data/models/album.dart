@@ -30,6 +30,7 @@ class Album implements JsonableInterface<Album> {
     this.isPlayable,
   });
 
+  ///Json'u albüm nesnesine çevirir
   factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
 
   ///Albüm tipi

@@ -17,6 +17,7 @@ class Token implements JsonableInterface<Token> {
     this.scope,
   });
 
+  ///Json'u token nesnesine çevirir
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
 
   ///Access Token'ı tutar

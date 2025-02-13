@@ -20,6 +20,7 @@ class NewReleasesAlbumsInfo implements JsonableInterface<NewReleasesAlbumsInfo> 
     this.items,
   });
 
+  ///Json'u newReleasesAlbumsInfo nesnesine çevirir
   factory NewReleasesAlbumsInfo.fromJson(Map<String, dynamic> json) => _$NewReleasesAlbumsInfoFromJson(json);
 
   ///Linki tutar

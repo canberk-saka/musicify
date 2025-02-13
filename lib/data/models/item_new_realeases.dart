@@ -30,6 +30,7 @@ class ItemNewRealeases implements JsonableInterface<ItemNewRealeases> {
     this.artists,
   });
 
+  ///Json'u itemNewRealeases nesnesine çevirir
   factory ItemNewRealeases.fromJson(Map<String, dynamic> json) => _$ItemNewRealeasesFromJson(json);
 
   ///Album türünü tutar

@@ -14,6 +14,7 @@ class ExplicitContent implements JsonableInterface<ExplicitContent> {
     this.filterLocked,
   });
 
+  ///Json'u explicitContent nesnesine çevirir
   factory ExplicitContent.fromJson(Map<String, dynamic> json) => _$ExplicitContentFromJson(json);
 
   ///Filtreleme durumunu tutar

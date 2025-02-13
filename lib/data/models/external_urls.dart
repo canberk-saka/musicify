@@ -14,6 +14,7 @@ class ExternalUrls implements JsonableInterface<ExternalUrls> {
     this.spotify,
   });
 
+  ///Json'u externalUrls nesnesine çevirir
   factory ExternalUrls.fromJson(Map<String, dynamic> json) => _$ExternalUrlsFromJson(json);
 
   ///Spotify linki

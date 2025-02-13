@@ -19,6 +19,7 @@ class Artist implements JsonableInterface<Artist> {
     this.uri,
   });
 
+  ///Json'u artist nesnesine çevirir
   factory Artist.fromJson(Map<String, dynamic> json) => _$ArtistFromJson(json);
 
   ///Artist için linkler

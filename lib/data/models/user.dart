@@ -28,6 +28,7 @@ class User implements JsonableInterface<User> {
     this.uri,
   });
 
+  ///Json'u user nesnesine çevirir
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   ///Kullanıcının ülkesini tutar

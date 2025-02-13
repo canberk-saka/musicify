@@ -14,6 +14,7 @@ class Followers implements JsonableInterface<Followers> {
     this.total,
   });
 
+  ///Json'u followers nesnesine çevirir
   factory Followers.fromJson(Map<String, dynamic> json) => _$FollowersFromJson(json);
 
   /// [href] alanı

@@ -37,6 +37,7 @@ class Item implements JsonableInterface<Item> {
     this.restrictions,
   });
 
+  ///Json'u item nesnesine çevirir
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 
   ///Albüm bilgileri
