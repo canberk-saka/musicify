@@ -11,7 +11,7 @@ abstract base class BaseTheme {
 
   ///ThemeData'nın oluşturulması
   ThemeData get theme => ThemeData(
-        appBarTheme: AppBarTheme(color: colorScheme.surfaceContainerLow),
+        appBarTheme: AppBarTheme(color: colorScheme.surface),
         colorScheme: colorScheme,
         scrollbarTheme: ScrollbarThemeData(
           thumbColor: WidgetStateProperty.resolveWith(

@@ -16,7 +16,8 @@
   "passwordsDoNotMatch" : "Şifreler eşleşmiyor",
   "emptyFields" : "Lütfen tüm alanları doldurun",
   "passwordLength" : "Şifre en az 6 karakter uzunluğunda olmalıdır", 
-  "invalidEmail" : "Geçersiz e-posta"
+  "invalidEmail" : "Geçersiz e-posta",
+  "newReleases" : "Yeni Çıkanlar"
 
   
 

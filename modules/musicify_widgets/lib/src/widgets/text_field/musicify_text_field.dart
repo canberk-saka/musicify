@@ -11,6 +11,7 @@ class MusicifyTextField extends StatefulWidget {
     super.key,
     this.hintText,
     this.icon,
+    this.color,
   })  : isObsecure = false,
         changeObscure = null;
 
@@ -23,6 +24,7 @@ class MusicifyTextField extends StatefulWidget {
     super.key,
     this.hintText,
     this.icon,
+    this.color,
   });
 
   ///TextField başlığı
@@ -36,6 +38,9 @@ class MusicifyTextField extends StatefulWidget {
 
   ///Şifre mi
   final bool? isObsecure;
+
+  ///TextField rengi
+  final Color? color;
 
   ///Şifre gizleme fonksiyonu
   final void Function()? changeObscure;
@@ -59,6 +64,7 @@ class _MusicifyTextFieldState extends State<MusicifyTextField> {
             ? IconButton(
                 onPressed: widget.changeObscure,
                 icon: Icon(
+                  color: widget.color,
                   widget.isObsecure! ? Icons.visibility : Icons.visibility_off,
                 ),
               )

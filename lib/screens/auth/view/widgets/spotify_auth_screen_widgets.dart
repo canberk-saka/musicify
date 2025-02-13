@@ -79,7 +79,7 @@ base mixin SpotifyAuthScreenWidgets on State<SpotifyAuthScreen> {
   ///Spotify Auth ekranı body'si
   Center _body() => Center(
         child: ElevatedButton(
-          onPressed: _launchSpotifyAuth, // Spotify auth işlemini başlat
+          onPressed: _launchSpotifyAuth,
           child: Text(context.l10n.loginWithSpotify),
         ),
       );

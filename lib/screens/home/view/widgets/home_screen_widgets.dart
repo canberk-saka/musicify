@@ -34,12 +34,18 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                 radius: 20,
                 backgroundImage: Image.network(state.user?.images?.firstOrNull?.url ?? '').image,
               ),
-              Text(state.user?.displayName ?? ''),
+              Text(
+                state.user?.displayName ?? '',
+                style: TextStyle(
+                  color: theme.colorScheme.onSurface,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               if (state.user?.product == 'premium')
                 const FaIcon(
                   FontAwesomeIcons.crown,
                   size: 17,
-                  color: Colors.yellow,
+                  color: Color.fromARGB(255, 255, 232, 59),
                 ),
             ],
           ),
@@ -55,9 +61,9 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
           children: [
             Container(
               margin: const EdgeInsets.all(10),
-              child: const Text(
-                'Yeni Çıkan Albümler',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+              child: Text(
+                l10n.newReleases,
+                style: TextStyle(fontSize: 20, color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -85,10 +91,11 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
       );
 
   Widget _card(ItemNewRealeases? album) => Container(
-        width: 250,
+        width: 240,
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Card(
-          elevation: 4,
+          color: Colors.transparent,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -101,8 +108,8 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
                     album?.images?.firstOrNull?.url ?? '',
-                    width: 200,
-                    height: 200,
+                    width: 220,
+                    height: 220,
                     fit: BoxFit.cover,
                   ),
                 )
@@ -114,7 +121,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               Text(
                 album?.name ?? '',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
               ),
 
               const SizedBox(height: 5),
@@ -123,7 +130,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               Text(
                 album?.artists?.firstOrNull?.name ?? '',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 14, color: Colors.grey),
+                style: TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
               ),
             ],
           ),

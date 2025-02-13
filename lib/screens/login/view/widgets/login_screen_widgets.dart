@@ -37,9 +37,10 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                 flex: 3,
                 child: Text(
                   l10n.login,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.primary,
                   ),
                 ),
               ),
@@ -51,15 +52,22 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                   MusicifyTextField(
                     controller: _emailController,
                     labelText: l10n.eMail,
-                    icon: const Icon(Icons.email),
+                    icon: Icon(
+                      Icons.email,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
                   BlocBuilder<LoginScreenCubit, LoginScreenState>(
                     builder: (context, state) => MusicifyTextField.obscure(
+                      color: theme.colorScheme.primary,
                       controller: _passwordController,
                       labelText: l10n.password,
                       isObsecure: state.isObscure,
                       changeObscure: () => read.changeObscure(),
-                      icon: const Icon(Icons.key),
+                      icon: Icon(
+                        Icons.key,
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
                   ),
                   Padding(

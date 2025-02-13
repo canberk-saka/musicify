@@ -17,7 +17,8 @@
     "passwordsDoNotMatch":"Passwords do not match",
     "emptyFields":"Please fill in all fields",
     "passwordLength":"Password must be at least 6 characters long",
-    "invalidEmail":"Invalid email"
+    "invalidEmail":"Invalid email",
+    "newReleases":"New Releases"
     
 
     

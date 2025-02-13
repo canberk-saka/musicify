@@ -52,9 +52,10 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
                 flex: 3,
                 child: Text(
                   l10n.signUp,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.primary,
                   ),
                 ),
               ),
@@ -64,26 +65,38 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
                 spacing: 25,
                 children: [
                   MusicifyTextField(
+                    color: theme.colorScheme.primary,
                     controller: _emailController,
                     labelText: l10n.eMail,
-                    icon: const Icon(Icons.email),
-                  ),
-                  BlocBuilder<SignUpCubit, SignUpState>(
-                    builder: (context, state) => MusicifyTextField.obscure(
-                      controller: _passwordController,
-                      changeObscure: () => read.changeObscure(),
-                      isObsecure: state.isObscure,
-                      labelText: l10n.password,
-                      icon: const Icon(Icons.key),
+                    icon: Icon(
+                      Icons.email,
+                      color: theme.colorScheme.primary,
                     ),
                   ),
                   BlocBuilder<SignUpCubit, SignUpState>(
                     builder: (context, state) => MusicifyTextField.obscure(
+                      color: theme.colorScheme.primary,
+                      controller: _passwordController,
+                      changeObscure: () => read.changeObscure(),
+                      isObsecure: state.isObscure,
+                      labelText: l10n.password,
+                      icon: Icon(
+                        Icons.key,
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                  ),
+                  BlocBuilder<SignUpCubit, SignUpState>(
+                    builder: (context, state) => MusicifyTextField.obscure(
+                      color: theme.colorScheme.primary,
                       controller: _confirmPasswordController,
                       changeObscure: () => read.changeObscure(),
                       isObsecure: state.isObscure,
                       labelText: l10n.confirmPassword,
-                      icon: const Icon(Icons.key),
+                      icon: Icon(
+                        Icons.key,
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
                   ),
                   Padding(
