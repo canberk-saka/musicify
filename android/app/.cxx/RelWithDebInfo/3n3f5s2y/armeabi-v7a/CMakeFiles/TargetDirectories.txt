@@ -1,0 +1,2 @@
+/Users/bracket/Desktop/development/musicify/android/app/.cxx/RelWithDebInfo/3n3f5s2y/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/bracket/Desktop/development/musicify/android/app/.cxx/RelWithDebInfo/3n3f5s2y/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,2 @@
+/Users/bracket/Desktop/development/musicify/android/app/.cxx/RelWithDebInfo/3n3f5s2y/x86_64/CMakeFiles/edit_cache.dir
+/Users/bracket/Desktop/development/musicify/android/app/.cxx/RelWithDebInfo/3n3f5s2y/x86_64/CMakeFiles/rebuild_cache.dir
