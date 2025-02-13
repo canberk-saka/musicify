@@ -7,13 +7,16 @@ import 'package:musicify/navigation/app_router.dart';
 final class DialogManager {
   ///{@macro dialogManager}
 
-  ///Mesaj
-
   ///SnackBar gösterme metodu
-  static void showSnackBar(String message) {
+  static void showSnackBar(String message, Color? color) {
     final currentContext = AppRouter.getContext;
     if (currentContext != null) {
-      ScaffoldMessenger.of(currentContext).showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(currentContext).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: color,
+        ),
+      );
     }
   }
 }

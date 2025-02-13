@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:musicify/dependency_injection/interface/injectable_interface.dart';
 import 'package:musicify/l10n/l10n.dart';
 import 'package:musicify/navigation/app_router.dart';
@@ -11,13 +12,15 @@ final class FirebaseAuthManager implements InjectableInterface {
   ///{@macro firebaseAuthManager}
   static final auth = FirebaseAuth.instance;
 
+  ///Context almak için kullanılır
+  final getContext = AppRouter.getContext;
+
   ///Email ve şifre ile giriş yapma işlemi
   Future<UserCredential?> signInWithEmailAndPassword(String email, String password) async {
     try {
       return await auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      final getContext = AppRouter.getContext;
-      DialogManager.showSnackBar(getContext!.l10n.registerFailed);
+      DialogManager.showSnackBar(getContext!.l10n.loginFailed, Colors.red);
     }
     return null;
   }
@@ -27,7 +30,7 @@ final class FirebaseAuthManager implements InjectableInterface {
     try {
       return await auth.createUserWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      DialogManager.showSnackBar('Kayıt olma işlemi başarısız');
+      DialogManager.showSnackBar(getContext!.l10n.registerFailed, Colors.red);
     }
     return null;
   }

@@ -11,7 +11,14 @@
     "signUp" : "Sign Up",
     "confirmPassword":"Confirm Password",
     "registerFailed":"Registration failed",
-    "registerSuccess":"Registration successful"
+    "registerSuccess":"Registration successful",
+    "loginFailed":"Login failed",
+    "loginSuccess":"Login successful",
+    "passwordsDoNotMatch":"Passwords do not match",
+    "emptyFields":"Please fill in all fields",
+    "passwordLength":"Password must be at least 6 characters long",
+    "invalidEmail":"Invalid email"
+    
 
     
 }

@@ -6,6 +6,17 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  ///Şifre ve email doğruluğuna bakar
+  bool validateFields(String password, String email) {
+    if (password.isEmpty || email.isEmpty) {
+      DialogManager.showSnackBar(l10n.emptyFields, Colors.red);
+
+      return false;
+    }
+
+    return true;
+  }
+
   ///Login ekranı appBarı'ı
   AppBar _appBar() => AppBar(
         backgroundColor: Colors.transparent,
@@ -55,11 +66,18 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                     padding: const EdgeInsets.all(20),
                     child: ElevatedButton(
                       onPressed: () async {
-                        final result = await DependencyInjector.read<FirebaseAuthManager>()
-                            .signInWithEmailAndPassword(_emailController.text, _passwordController.text);
+                        final isConfirm = validateFields(_emailController.text, _passwordController.text);
 
-                        if (result?.user != null) {
-                          await AppRouter.push(AppRoutes.spotifyAuth);
+                        if (isConfirm) {
+                          try {
+                            final result = await DependencyInjector.read<FirebaseAuthManager>()
+                                .signInWithEmailAndPassword(_emailController.text, _passwordController.text);
+                            if (result?.user != null) {
+                              await AppRouter.push(AppRoutes.spotifyAuth);
+                            }
+                          } catch (e) {
+                            DialogManager.showSnackBar(l10n.loginFailed, Colors.red);
+                          }
                         }
                       },
                       child: Text(l10n.login),

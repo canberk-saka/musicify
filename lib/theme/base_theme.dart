@@ -21,6 +21,12 @@ abstract base class BaseTheme {
             (states) => states.contains(WidgetState.hovered) ? 10 : 5,
           ),
         ),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: FadeForwardsPageTransitionsBuilder(),
+          },
+        ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
         ),

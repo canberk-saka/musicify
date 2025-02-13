@@ -63,8 +63,16 @@ base mixin SpotifyAuthScreenWidgets on State<SpotifyAuthScreen> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _launchSpotifyAuth();
+  }
+
   ///Spotify Auth ekranı appBarı
   AppBar _appBar() => AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: Text(context.l10n.spotifyAuth),
       );
 

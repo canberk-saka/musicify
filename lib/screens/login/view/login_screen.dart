@@ -6,6 +6,7 @@ import 'package:musicify/dependency_injection/dependency_injector.dart';
 import 'package:musicify/navigation/app_router.dart';
 import 'package:musicify/navigation/app_routes.dart';
 import 'package:musicify/screens/login/cubit/cubit/login_screen_cubit.dart';
+import 'package:musicify/services/dialog_manager.dart';
 import 'package:musicify_widgets/musicify_widgets.dart';
 
 part '../../login/view/widgets/login_screen_widgets.dart';

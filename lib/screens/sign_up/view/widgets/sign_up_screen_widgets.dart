@@ -8,35 +8,27 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
   final TextEditingController _confirmPasswordController = TextEditingController();
 
   ///Şifrelerin doğruluğuna bakar
-  bool confirmPassword(String password, String confirmPassword) {
-    log('password: $password, confirmPassword: $confirmPassword');
-    if (password.isEmpty || confirmPassword.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Parola ya da email alanları boş olamaz!'),
-          backgroundColor: Colors.yellow,
-        ),
-      );
+  bool validateFields(String password, String confirmPassword, String email) {
+    if (!email.contains('@')) {
+      DialogManager.showSnackBar(l10n.invalidEmail, Colors.red);
+
+      return false;
+    }
+    if (password.isEmpty || confirmPassword.isEmpty || email.isEmpty) {
+      DialogManager.showSnackBar(l10n.emptyFields, Colors.red);
+
       return false;
     }
 
     if (password != confirmPassword) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Şifreler eşleşmiyor'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      DialogManager.showSnackBar(l10n.passwordsDoNotMatch, Colors.red);
+
       return false;
     }
 
     if (password.length < 6) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Şifre en az 6 karakter olmalıdır'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      DialogManager.showSnackBar(l10n.passwordLength, Colors.red);
+
       return false;
     }
     return true;
@@ -97,7 +89,7 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
                     padding: const EdgeInsets.all(20),
                     child: ElevatedButton(
                       onPressed: () {
-                        final isConfirm = confirmPassword(_passwordController.text, _confirmPasswordController.text);
+                        final isConfirm = validateFields(_passwordController.text, _confirmPasswordController.text, _emailController.text);
                         if (isConfirm) {
                           DependencyInjector.read<FirebaseAuthManager>().signUpWithEmailAndPassword(_emailController.text, _passwordController.text);
                         }

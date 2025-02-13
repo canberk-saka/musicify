@@ -10,7 +10,13 @@
   "signUp" : "Kayıt Ol",
   "confirmPassword" : "Şifreyi Onayla",
   "registerFailed" : "Kayıt başarısız",
-  "registerSuccess" : "Kayıt başarılı"
+  "registerSuccess" : "Kayıt başarılı",
+  "loginFailed" : "Giriş başarısız",
+  "loginSuccess" : "Giriş başarılı",
+  "passwordsDoNotMatch" : "Şifreler eşleşmiyor",
+  "emptyFields" : "Lütfen tüm alanları doldurun",
+  "passwordLength" : "Şifre en az 6 karakter uzunluğunda olmalıdır", 
+  "invalidEmail" : "Geçersiz e-posta"
 
   
 
