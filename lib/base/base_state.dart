@@ -9,6 +9,9 @@ abstract base class BaseState<T extends StatefulWidget, R extends BaseCubit<Equa
   ///read çağırma metodu
   R get read => context.read<R>();
 
+  ///theme çağırma metodu
+  ThemeData get theme => Theme.of(context);
+
   ///Localizations metodu
   AppLocalizations get l10n => AppLocalizations.of(context);
 

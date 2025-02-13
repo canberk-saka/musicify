@@ -30,6 +30,7 @@ final class HomeCubit extends BaseCubit<HomeState> {
   ///Yeni albümleri getirme işlemi
   Future<void> getNewAlbums() async {
     final albums = await DependencyInjector.read<AlbumApiManager>().getNewAlbums();
+    emit(state.copyWith(isLoading: false));
     emit(state.copyWith(albums: albums));
   }
 }

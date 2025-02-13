@@ -9,13 +9,14 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
 
   ///Şifrelerin doğruluğuna bakar
   bool validateFields(String password, String confirmPassword, String email) {
-    if (!email.contains('@')) {
-      DialogManager.showSnackBar(l10n.invalidEmail, Colors.red);
+    if (password.isEmpty || confirmPassword.isEmpty || email.isEmpty) {
+      DialogManager.showSnackBar(l10n.emptyFields, Colors.red);
 
       return false;
     }
-    if (password.isEmpty || confirmPassword.isEmpty || email.isEmpty) {
-      DialogManager.showSnackBar(l10n.emptyFields, Colors.red);
+
+    if (!email.contains('@')) {
+      DialogManager.showSnackBar(l10n.invalidEmail, Colors.red);
 
       return false;
     }
@@ -91,7 +92,9 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
                       onPressed: () {
                         final isConfirm = validateFields(_passwordController.text, _confirmPasswordController.text, _emailController.text);
                         if (isConfirm) {
+                          DialogManager.showSnackBar(l10n.registerSuccess, Colors.green);
                           DependencyInjector.read<FirebaseAuthManager>().signUpWithEmailAndPassword(_emailController.text, _passwordController.text);
+                          AppRouter.push(AppRoutes.spotifyAuth);
                         }
                       },
                       child: Text(l10n.signUp),

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:musicify/base/base_state.dart';
 import 'package:musicify/data/models/item_new_realeases.dart';
 import 'package:musicify/screens/home/cubit/home_cubit.dart';
+import 'package:shimmer/shimmer.dart';
 
 part '../view/widgets/home_screen_widgets.dart';
 

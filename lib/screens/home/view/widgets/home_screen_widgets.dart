@@ -3,6 +3,7 @@ part of '../../view/home_screen.dart';
 ///Home ekranının widgetları
 base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
   late final ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
@@ -65,20 +66,22 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                 builder: (context, state) => Scrollbar(
                   interactive: true,
                   controller: _scrollController,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: state.albums?.albums?.items?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final album = state.albums?.albums?.items?[index];
-                      return _card(album);
-                    },
-                  ),
+                  child: state.isLoading! ? _buildShimmerList() : _buildNewReleasesList(state),
                 ),
               ),
             ),
           ],
         ),
+      );
+
+  ListView _buildNewReleasesList(HomeState state) => ListView.builder(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemCount: state.albums?.albums?.items?.length ?? 0,
+        itemBuilder: (context, index) {
+          final album = state.albums?.albums?.items?[index];
+          return _card(album);
+        },
       );
 
   Widget _card(ItemNewRealeases? album) => Container(
@@ -123,6 +126,48 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ],
+          ),
+        ),
+      );
+
+  Widget _buildShimmerList() => ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context, index) => Shimmer.fromColors(
+          baseColor: theme.colorScheme.surface,
+          highlightColor: theme.colorScheme.surfaceBright,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Container(
+              width: 200,
+              height: 300,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 180,
+                    height: 180,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    width: 100,
+                    height: 20,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    width: 120,
+                    height: 15,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       );
