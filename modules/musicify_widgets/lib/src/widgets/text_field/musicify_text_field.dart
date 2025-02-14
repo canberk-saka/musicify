@@ -54,24 +54,22 @@ class MusicifyTextField extends StatefulWidget {
 
 class _MusicifyTextFieldState extends State<MusicifyTextField> {
   @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      obscureText: widget.isObsecure!,
-      decoration: InputDecoration(
-        prefixIcon: widget.icon,
-        suffixIcon: widget.changeObscure != null
-            ? IconButton(
-                onPressed: widget.changeObscure,
-                icon: Icon(
-                  color: widget.color,
-                  widget.isObsecure! ? Icons.visibility : Icons.visibility_off,
-                ),
-              )
-            : null,
-        labelText: widget.labelText,
-        hintText: widget.hintText,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => TextFormField(
+        controller: widget.controller,
+        obscureText: widget.isObsecure!,
+        decoration: InputDecoration(
+          prefixIcon: widget.icon,
+          suffixIcon: widget.changeObscure != null
+              ? IconButton(
+                  onPressed: widget.changeObscure,
+                  icon: Icon(
+                    color: widget.color,
+                    widget.isObsecure! ? Icons.visibility : Icons.visibility_off,
+                  ),
+                )
+              : null,
+          labelText: widget.labelText,
+          hintText: widget.hintText,
+        ),
+      );
 }

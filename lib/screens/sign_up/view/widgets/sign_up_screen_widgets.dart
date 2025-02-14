@@ -10,25 +10,25 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
   ///Şifrelerin doğruluğuna bakar
   bool validateFields(String password, String confirmPassword, String email) {
     if (password.isEmpty || confirmPassword.isEmpty || email.isEmpty) {
-      DialogManager.showSnackBar(l10n.emptyFields, Colors.red);
+      DialogManager.showSnackBar(context, message: l10n.emptyFields, color: Colors.red);
 
       return false;
     }
 
     if (!email.contains('@')) {
-      DialogManager.showSnackBar(l10n.invalidEmail, Colors.red);
+      DialogManager.showSnackBar(context, message: l10n.invalidEmail, color: Colors.red);
 
       return false;
     }
 
     if (password != confirmPassword) {
-      DialogManager.showSnackBar(l10n.passwordsDoNotMatch, Colors.red);
+      DialogManager.showSnackBar(context, message: l10n.passwordsDoNotMatch, color: Colors.red);
 
       return false;
     }
 
     if (password.length < 6) {
-      DialogManager.showSnackBar(l10n.passwordLength, Colors.red);
+      DialogManager.showSnackBar(context, message: l10n.passwordLength, color: Colors.red);
 
       return false;
     }
@@ -105,7 +105,7 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
                       onPressed: () {
                         final isConfirm = validateFields(_passwordController.text, _confirmPasswordController.text, _emailController.text);
                         if (isConfirm) {
-                          DialogManager.showSnackBar(l10n.registerSuccess, Colors.green);
+                          DialogManager.showSnackBar(context, message: l10n.registerSuccess, color: Colors.green);
                           DependencyInjector.read<FirebaseAuthManager>().signUpWithEmailAndPassword(_emailController.text, _passwordController.text);
                           AppRouter.push(AppRoutes.spotifyAuth);
                         }

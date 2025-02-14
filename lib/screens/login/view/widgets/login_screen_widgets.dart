@@ -9,7 +9,7 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
   ///Şifre ve email doğruluğuna bakar
   bool validateFields(String password, String email) {
     if (password.isEmpty || email.isEmpty) {
-      DialogManager.showSnackBar(l10n.emptyFields, Colors.red);
+      DialogManager.showSnackBar(context, message: l10n.emptyFields, color: Colors.red);
 
       return false;
     }
@@ -77,14 +77,19 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                         final isConfirm = validateFields(_emailController.text, _passwordController.text);
 
                         if (isConfirm) {
+                          //DialogManager.showLoadingAlertDialog(context);
+
+                          await Future<void>.delayed(const Duration(seconds: 2));
                           try {
                             final result = await DependencyInjector.read<FirebaseAuthManager>()
                                 .signInWithEmailAndPassword(_emailController.text, _passwordController.text);
+
                             if (result?.user != null) {
                               await AppRouter.push(AppRoutes.spotifyAuth);
+                              //DialogManager.closeLoadingAlertDialog();
                             }
                           } catch (e) {
-                            DialogManager.showSnackBar(l10n.loginFailed, Colors.red);
+                            DialogManager.showSnackBar(AppRouter.getContext!, message: l10n.loginFailed, color: Colors.red);
                           }
                         }
                       },
