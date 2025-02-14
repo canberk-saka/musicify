@@ -31,6 +31,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
             spacing: 5,
             children: [
               CircleAvatar(
+                backgroundColor: Colors.transparent,
                 radius: 20,
                 backgroundImage: Image.network(state.user?.images?.firstOrNull?.url ?? '').image,
               ),
@@ -54,44 +55,38 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
       );
 
   ///Home ekranı body'si
-  Widget _body() => SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: Text(
-                l10n.newReleases,
-                style: TextStyle(fontSize: 20, color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(
-              height: 300,
-              child: BlocBuilder<HomeCubit, HomeState>(
-                builder: (context, state) => Scrollbar(
-                  interactive: true,
-                  controller: _scrollController,
-                  child: state.isLoading! ? _buildShimmerList() : _buildNewReleasesList(state),
+  Widget _body() => RefreshIndicator.adaptive(
+        onRefresh: () => read.refresh(),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          controller: _scrollController,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.all(10),
+                child: Text(
+                  l10n.newReleases,
+                  style: TextStyle(fontSize: 20, color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 300,
+                child: BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) => state.isLoading! ? _buildShimmerList() : _buildNewReleasesList(state),
+                ),
+              ),
+            ],
+          ),
         ),
       );
-
-  ListView _buildNewReleasesList(HomeState state) => ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: state.albums?.albums?.items?.length ?? 0,
-        itemBuilder: (context, index) {
-          final album = state.albums?.albums?.items?[index];
-          return _card(album);
-        },
+  Widget _buildNewReleasesList(HomeState state) => MusicifyHorizontalListView(
+        items: state.albums?.albums?.items,
+        itemBuilder: _card,
       );
 
   Widget _card(ItemNewRealeases? album) => Container(
-        width: 240,
+        width: 220,
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Card(
           color: Colors.transparent,
@@ -108,8 +103,8 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
                     album?.images?.firstOrNull?.url ?? '',
-                    width: 220,
-                    height: 220,
+                    width: 200,
+                    height: 200,
                     fit: BoxFit.cover,
                   ),
                 )

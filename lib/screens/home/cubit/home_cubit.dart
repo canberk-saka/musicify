@@ -33,4 +33,11 @@ final class HomeCubit extends BaseCubit<HomeState> {
     emit(state.copyWith(isLoading: false));
     emit(state.copyWith(albums: albums));
   }
+
+  ///Albümleri yenileme işlemi
+  Future<void> refresh() async {
+    state.copyWith();
+    emit(state.copyWith(isLoading: true));
+    await getNewAlbums();
+  }
 }
