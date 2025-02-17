@@ -31,7 +31,7 @@ ItemNewRealeases _$ItemNewRealeasesFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String?,
       uri: json['uri'] as String?,
       artists: (json['artists'] as List<dynamic>?)
-          ?.map((e) => Artist.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => NewReleasesArtist.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

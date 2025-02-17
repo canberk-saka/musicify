@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:musicify/data/interfaces/jsonable_interface.dart';
-import 'package:musicify/data/models/artist.dart';
 import 'package:musicify/data/models/external_urls.dart';
 import 'package:musicify/data/models/image_elements.dart';
+import 'package:musicify/data/models/new_releases_artist.dart';
 import 'package:musicify/data/models/restrictions.dart';
 
 part 'generated/item_new_realeases.g.dart';
@@ -87,7 +87,7 @@ class ItemNewRealeases implements JsonableInterface<ItemNewRealeases> {
 
   ///Sanatçıları tutar
   @JsonKey(name: 'artists')
-  List<Artist>? artists;
+  List<NewReleasesArtist>? artists;
 
   @override
   Map<String, dynamic> toJson() => _$ItemNewRealeasesToJson(this);

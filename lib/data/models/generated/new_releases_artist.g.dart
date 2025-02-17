@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../artist.dart';
+part of '../new_releases_artist.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Artist _$ArtistFromJson(Map<String, dynamic> json) => Artist(
+NewReleasesArtist _$NewReleasesArtistFromJson(Map<String, dynamic> json) =>
+    NewReleasesArtist(
       externalUrls: json['external_urls'] == null
           ? null
           : ExternalUrls.fromJson(
@@ -18,7 +19,8 @@ Artist _$ArtistFromJson(Map<String, dynamic> json) => Artist(
       uri: json['uri'] as String?,
     );
 
-Map<String, dynamic> _$ArtistToJson(Artist instance) => <String, dynamic>{
+Map<String, dynamic> _$NewReleasesArtistToJson(NewReleasesArtist instance) =>
+    <String, dynamic>{
       if (instance.externalUrls?.toJson() case final value?)
         'external_urls': value,
       if (instance.href case final value?) 'href': value,

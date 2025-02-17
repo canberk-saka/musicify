@@ -2,15 +2,15 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:musicify/data/interfaces/jsonable_interface.dart';
 import 'package:musicify/data/models/external_urls.dart';
 
-part 'generated/artist.g.dart';
+part 'generated/new_releases_artist.g.dart';
 
 ///{@template artist}
 /// Artist bilgilerini tutar
 /// {@endtemplate}
 @JsonSerializable(createFactory: true)
-class Artist implements JsonableInterface<Artist> {
+class NewReleasesArtist implements JsonableInterface<NewReleasesArtist> {
   ///{@macro artist}
-  Artist({
+  NewReleasesArtist({
     this.externalUrls,
     this.href,
     this.id,
@@ -20,7 +20,7 @@ class Artist implements JsonableInterface<Artist> {
   });
 
   ///Json'u artist nesnesine çevirir
-  factory Artist.fromJson(Map<String, dynamic> json) => _$ArtistFromJson(json);
+  factory NewReleasesArtist.fromJson(Map<String, dynamic> json) => _$NewReleasesArtistFromJson(json);
 
   ///Artist için linkler
   @JsonKey(name: 'external_urls')
@@ -47,8 +47,8 @@ class Artist implements JsonableInterface<Artist> {
   String? uri;
 
   @override
-  Map<String, dynamic> toJson() => _$ArtistToJson(this);
+  Map<String, dynamic> toJson() => _$NewReleasesArtistToJson(this);
 
   @override
-  Artist fromJson(Map<String, dynamic> json) => Artist.fromJson(json);
+  NewReleasesArtist fromJson(Map<String, dynamic> json) => NewReleasesArtist.fromJson(json);
 }

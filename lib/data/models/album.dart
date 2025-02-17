@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:musicify/data/interfaces/jsonable_interface.dart';
-import 'package:musicify/data/models/artist.dart';
 import 'package:musicify/data/models/external_urls.dart';
 import 'package:musicify/data/models/image_elements.dart';
+import 'package:musicify/data/models/new_releases_artist.dart';
 
 part 'generated/album.g.dart';
 
@@ -11,9 +11,9 @@ part 'generated/album.g.dart';
 ///{@template album}
 ///Album bilgilerini tutar
 ///{@endtemplate}
-class Album implements JsonableInterface<Album> {
+class NewReleasesAlbum implements JsonableInterface<NewReleasesAlbum> {
   ///{@macro album}
-  Album({
+  NewReleasesAlbum({
     this.albumType,
     this.totalTracks,
     this.availableMarkets,
@@ -31,7 +31,7 @@ class Album implements JsonableInterface<Album> {
   });
 
   ///Json'u albüm nesnesine çevirir
-  factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
+  factory NewReleasesAlbum.fromJson(Map<String, dynamic> json) => _$NewReleasesAlbumFromJson(json);
 
   ///Albüm tipi
   @JsonKey(name: 'album_type')
@@ -83,15 +83,15 @@ class Album implements JsonableInterface<Album> {
 
   ///Albümdeki sanatçılar
   @JsonKey(name: 'artists')
-  List<Artist>? artists;
+  List<NewReleasesArtist>? artists;
 
   ///Albümün oynatılabilir olup olmadığı
   @JsonKey(name: 'is_playable')
   bool? isPlayable;
 
   @override
-  Map<String, dynamic> toJson() => _$AlbumToJson(this);
+  Map<String, dynamic> toJson() => _$NewReleasesAlbumToJson(this);
 
   @override
-  Album fromJson(Map<String, dynamic> json) => Album.fromJson(json);
+  NewReleasesAlbum fromJson(Map<String, dynamic> json) => NewReleasesAlbum.fromJson(json);
 }

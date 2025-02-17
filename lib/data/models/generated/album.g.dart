@@ -6,7 +6,8 @@ part of '../album.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Album _$AlbumFromJson(Map<String, dynamic> json) => Album(
+NewReleasesAlbum _$NewReleasesAlbumFromJson(Map<String, dynamic> json) =>
+    NewReleasesAlbum(
       albumType: json['album_type'] as String?,
       totalTracks: (json['total_tracks'] as num?)?.toInt(),
       availableMarkets: (json['available_markets'] as List<dynamic>?)
@@ -29,12 +30,13 @@ Album _$AlbumFromJson(Map<String, dynamic> json) => Album(
       type: json['type'] as String?,
       uri: json['uri'] as String?,
       artists: (json['artists'] as List<dynamic>?)
-          ?.map((e) => Artist.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => NewReleasesArtist.fromJson(e as Map<String, dynamic>))
           .toList(),
       isPlayable: json['is_playable'] as bool?,
     );
 
-Map<String, dynamic> _$AlbumToJson(Album instance) => <String, dynamic>{
+Map<String, dynamic> _$NewReleasesAlbumToJson(NewReleasesAlbum instance) =>
+    <String, dynamic>{
       if (instance.albumType case final value?) 'album_type': value,
       if (instance.totalTracks case final value?) 'total_tracks': value,
       if (instance.availableMarkets case final value?)
