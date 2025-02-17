@@ -112,3 +112,7 @@ app.*.map.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
+
+
+/Users/bracket/Desktop/development/musicify/my_rsa_key.pub
+/Users/bracket/Desktop/development/musicify/my_rsa_key
