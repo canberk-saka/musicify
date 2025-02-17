@@ -10,7 +10,7 @@ import 'package:musicify/services/dialog_manager.dart';
 ///{@endtemplate}
 final class FirebaseAuthManager implements InjectableInterface {
   ///{@macro firebaseAuthManager}
-  static final auth = FirebaseAuth.instance;
+  static final _auth = FirebaseAuth.instance;
 
   ///Context almak için kullanılır
   final getContext = AppRouter.getContext;
@@ -18,9 +18,9 @@ final class FirebaseAuthManager implements InjectableInterface {
   ///Email ve şifre ile giriş yapma işlemi
   Future<UserCredential?> signInWithEmailAndPassword(String email, String password) async {
     try {
-      return await auth.signInWithEmailAndPassword(email: email, password: password);
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      DialogManager.showSnackBar(getContext!.l10n.loginFailed, Colors.red);
+      DialogManager.showSnackBar(getContext!, message: getContext!.l10n.loginFailed, color: Colors.red);
     }
     return null;
   }
@@ -28,9 +28,9 @@ final class FirebaseAuthManager implements InjectableInterface {
   ///Email ve şifre ile kayıt olma işlemi
   Future<UserCredential?> signUpWithEmailAndPassword(String email, String password) async {
     try {
-      return await auth.createUserWithEmailAndPassword(email: email, password: password);
+      return await _auth.createUserWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      DialogManager.showSnackBar(getContext!.l10n.registerFailed, Colors.red);
+      DialogManager.showSnackBar(getContext!, message: getContext!.l10n.registerFailed, color: Colors.red);
     }
     return null;
   }

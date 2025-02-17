@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:musicify/base/base_state.dart';
+import 'package:musicify/data/interfaces/jsonable_interface.dart';
+import 'package:musicify/data/models/followed_artist_item.dart';
 import 'package:musicify/data/models/item_new_realeases.dart';
 import 'package:musicify/screens/home/cubit/home_cubit.dart';
 import 'package:musicify_widgets/musicify_widgets.dart';

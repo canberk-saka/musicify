@@ -51,6 +51,9 @@ abstract final class AppRouter {
   ///Sayfaya geçme metodu
   static Future<void> push(AppRoutes path) async => navigatorKey.currentContext?.pushNamed(path.name);
 
+  ///Sayfadan çıkma metodu
+  static Future<void> pop() async => navigatorKey.currentState?.pop();
+
   ///Context çağırma metodu
   static BuildContext? get getContext => navigatorKey.currentContext;
 }

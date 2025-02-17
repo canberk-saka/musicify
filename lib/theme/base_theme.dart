@@ -24,7 +24,6 @@ abstract base class BaseTheme {
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
             TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
-            TargetPlatform.iOS: FadeForwardsPageTransitionsBuilder(),
           },
         ),
         inputDecorationTheme: InputDecorationTheme(

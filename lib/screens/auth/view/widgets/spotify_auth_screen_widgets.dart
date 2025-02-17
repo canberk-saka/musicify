@@ -41,7 +41,7 @@ base mixin SpotifyAuthScreenWidgets on State<SpotifyAuthScreen> {
   final String redirectUri = Env.redirectUri;
 
   ///Spotify scope'larını tutan değişken
-  final String scope = 'user-read-private user-read-email';
+  final String scope = 'user-read-private user-read-email user-follow-read';
 
   /// Rastgele string üreten fonksiyon
   String generateRandomString(int length) {
