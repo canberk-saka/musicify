@@ -18,7 +18,8 @@
     "emptyFields":"Please fill in all fields",
     "passwordLength":"Password must be at least 6 characters long",
     "invalidEmail":"Invalid email",
-    "newReleases":"New Releases"
+    "newReleases":"New Releases",
+    "followedArtists":"Followed Artists"
     
 
     

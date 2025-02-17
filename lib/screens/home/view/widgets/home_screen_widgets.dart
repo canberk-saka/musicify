@@ -77,23 +77,28 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                 height: 300,
                 child: BlocBuilder<HomeCubit, HomeState>(
                   builder: (context, state) =>
-                      state.isLoading! ? _buildShimmerList() : _buildNewReleasesList(state, state.albums?.albums?.items, _newReleaseCard),
+                      state.isLoading! ? _buildShimmerList() : _buildCardList(state, state.albums?.albums?.items, _newReleaseCard),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                child: Text(
+                  l10n.followedArtists,
+                  style: TextStyle(fontSize: 20, color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
                 height: 300,
                 child: BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) => state.isLoading!
-                      ? _buildShimmerList()
-                      : _buildNewReleasesList<FollowedArtistItem>(state, state.artist?.artists?.items, _artistCard),
+                  builder: (context, state) =>
+                      state.isLoading! ? _buildShimmerList() : _buildCardList<FollowedArtistItem>(state, state.artist?.artists?.items, _artistCard),
                 ),
               ),
             ],
           ),
         ),
       );
-  Widget _buildNewReleasesList<T extends JsonableInterface<T>>(HomeState state, List<T>? items, Widget Function(T?) card) =>
-      MusicifyHorizontalListView(
+  Widget _buildCardList<T extends JsonableInterface<T>>(HomeState state, List<T>? items, Widget Function(T?) card) => MusicifyHorizontalListView(
         items: items,
         itemBuilder: card,
       );
@@ -145,55 +150,54 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
         ),
       );
 
-  Widget _artistCard(FollowedArtistItem? artist) => Text(artist!.href!);
+  //Widget _artistCard(FollowedArtistItem? artist) => Text(artist!.href!);
 
-  // Widget _artistCard(Artist? artist) => Container(
-  //   width: 220,
-  //   margin: const EdgeInsets.symmetric(horizontal: 8),
-  //   child: Card(
-  //     color: Colors.transparent,
-  //     elevation: 0,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.circular(12),
-  //     ),
-  //     child: Column(
-  //       mainAxisSize: MainAxisSize.min,
-  //       children: [
-  //         // Albüm Resmi
-  //         if (artist?.artists?.items?.firstOrNull?.url != null)
-  //           ClipRRect(
-  //             borderRadius: BorderRadius.circular(12),
-  //             child: Image.network(
+  Widget _artistCard(FollowedArtistItem? artist) => Container(
+        width: 220,
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        child: Card(
+          color: Colors.transparent,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Albüm Resmi
+              if (artist?.images?.firstOrNull?.url != null)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    artist?.images?.firstOrNull?.url ?? '',
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              else
+                const SizedBox.shrink(),
 
-  //               artist.artists?.items?.images?.firstOrNull?.url ?? '',
-  //               width: 200,
-  //               height: 200,
-  //               fit: BoxFit.cover,
-  //             ),
-  //           )
-  //         else
-  //           const SizedBox.shrink(),
+              const SizedBox(height: 10),
 
-  //         const SizedBox(height: 10),
+              Text(
+                artist?.name ?? '',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
+              ),
 
-  //         Text(
-  //           album?.name ?? '',
-  //           textAlign: TextAlign.center,
-  //           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
-  //         ),
+              const SizedBox(height: 5),
 
-  //         const SizedBox(height: 5),
-
-  //         // Albüm Sanatçısı
-  //         Text(
-  //           album?.artists?.firstOrNull?.name ?? '',
-  //           textAlign: TextAlign.center,
-  //           style: TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
-  //         ),
-  //       ],
-  //     ),
-  //   ),
-  // );
+              // // Albüm Sanatçısı
+              // Text(
+              //   album?.artists?.firstOrNull?.name ?? '',
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
+              // ),
+            ],
+          ),
+        ),
+      );
 
   Widget _buildShimmerList() => ListView.builder(
         scrollDirection: Axis.horizontal,

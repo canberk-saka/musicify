@@ -17,7 +17,8 @@
   "emptyFields" : "Lütfen tüm alanları doldurun",
   "passwordLength" : "Şifre en az 6 karakter uzunluğunda olmalıdır", 
   "invalidEmail" : "Geçersiz e-posta",
-  "newReleases" : "Yeni Çıkanlar"
+  "newReleases" : "Yeni Çıkanlar",
+  "followedArtists" : "Takip Edilen Sanatçılar"
 
   
 

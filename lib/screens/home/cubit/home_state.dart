@@ -30,12 +30,19 @@ final class HomeState extends Equatable {
   final bool? isLoading;
 
   ///Kullanıcı bilgilerini güncelle
-  HomeState copyWith({User? user, NewReleasesAlbum? albums, UserPlaylists? userPlaylist, Artist? artist, bool? isLoading}) => HomeState(
-        user: user ?? this.user,
-        albums: albums ?? this.albums,
-        userPlaylists: userPlaylist ?? userPlaylists,
-        artist: artist ?? this.artist,
-        isLoading: isLoading ?? this.isLoading,
+  HomeState copyWith({
+    ValueGetter<User?>? user,
+    ValueGetter<NewReleasesAlbum?>? albums,
+    ValueGetter<UserPlaylists?>? userPlaylist,
+    ValueGetter<Artist?>? artist,
+    ValueGetter<bool?>? isLoading,
+  }) =>
+      HomeState(
+        user: user?.call() ?? this.user,
+        albums: albums?.call() ?? this.albums,
+        userPlaylists: userPlaylist?.call() ?? userPlaylists,
+        artist: artist?.call() ?? this.artist,
+        isLoading: isLoading?.call() ?? this.isLoading,
       );
 
   @override
