@@ -29,6 +29,7 @@ dependencies:
   meta: ^1.15.0
   musicify_widgets:
     path: modules/musicify_widgets
+  realm: ^20.0.1
   shimmer: ^3.0.0  
   talker_dio_logger: ^4.6.7  
   url_launcher: ^6.3.1
@@ -47,9 +48,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  json_serializable: ^6.9.3
+  json_serializable: ^6.9.0
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+
 
 flutter_launcher_icons:
   android: true
