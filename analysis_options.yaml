@@ -13,3 +13,5 @@ linter:
     public_member_api_docs: true
     lines_longer_than_80_chars: false
     prefer_expression_function_bodies: true
+    prefer_single_quotes: true
+    sort_child_properties_last: true
