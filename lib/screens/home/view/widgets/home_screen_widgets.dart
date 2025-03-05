@@ -11,11 +11,12 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await read.getAuth();
       await read.getUser();
-      //await read.getUsersPlaylist();
+      await read.getTopItem();
 
       await Future.wait([
-        read.getNewAlbums(),
-        read.getFollowedArtists(),
+        //read.getNewAlbums(),
+        //read.getFollowedArtists(),
+        //read.getUsersPlaylist(),
       ]);
     });
   }
@@ -28,7 +29,9 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
 
   ///Home ekranı appBarı
   AppBar _appBar() => AppBar(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+        ),
         title: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) => Row(
             spacing: 5,
@@ -36,7 +39,9 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 20,
-                backgroundImage: Image.network(state.user?.images?.firstOrNull?.url ?? '').image,
+                backgroundImage:
+                    Image.network(state.user?.images?.firstOrNull?.url ?? '')
+                        .image,
               ),
               Text(
                 state.user?.displayName ?? '',
@@ -66,46 +71,96 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Kullanıcı Playlistleri
               Container(
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  l10n.newReleases,
-                  style: TextStyle(fontSize: 20, color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
+                  l10n.usersPlaylist,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(
-                height: 300,
+                height: pageHeight * 0.32,
                 child: BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) =>
-                      state.isLoading! ? _buildShimmerList() : _buildCardList(state, state.albums?.albums?.items, _newReleaseCard),
+                  builder: (context, state) => state.isLoading!
+                      ? _buildShimmerList()
+                      : _buildCardList<UserPlaylistItem>(
+                          state,
+                          state.userPlaylists?.items,
+                          _userPlaylistCard,
+                        ),
                 ),
               ),
+              // Takip Edilen Sanatçılar
               Container(
                 margin: const EdgeInsets.all(10),
                 child: Text(
                   l10n.followedArtists,
-                  style: TextStyle(fontSize: 20, color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(
-                height: 300,
+                height: pageHeight * 0.32,
                 child: BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) =>
-                      state.isLoading! ? _buildShimmerList() : _buildCardList<FollowedArtistItem>(state, state.artist?.artists?.items, _artistCard),
+                  builder: (context, state) => state.isLoading!
+                      ? _buildShimmerList()
+                      : _buildCardList<FollowedArtistItem>(
+                          state,
+                          state.artist?.artists?.items,
+                          _artistCard,
+                        ),
+                ),
+              ),
+              // Yeni Çıkanlar
+              Container(
+                margin: const EdgeInsets.all(10),
+                child: Text(
+                  l10n.newReleases,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: pageHeight * 0.33,
+                child: BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) => state.isLoading!
+                      ? _buildShimmerList()
+                      : _buildCardList(
+                          state,
+                          state.albums?.albums?.items,
+                          _newReleaseCard,
+                        ),
                 ),
               ),
             ],
           ),
         ),
       );
-  Widget _buildCardList<T extends JsonableInterface<T>>(HomeState state, List<T>? items, Widget Function(T?) card) => MusicifyHorizontalListView(
+  Widget _buildCardList<T extends JsonableInterface<T>>(
+    HomeState state,
+    List<T>? items,
+    Widget Function(T?) card,
+  ) =>
+      MusicifyHorizontalListView(
         items: items,
         itemBuilder: card,
       );
 
   Widget _newReleaseCard(ItemNewRealeases? album) => Container(
-        width: 220,
-        margin: const EdgeInsets.symmetric(horizontal: 8),
+        width: pageWidh * 0.55,
+        height: pageHeight * 0.3,
+        margin: const EdgeInsets.symmetric(horizontal: 2),
         child: Card(
           color: Colors.transparent,
           elevation: 0,
@@ -121,8 +176,8 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
                     album?.images?.firstOrNull?.url ?? '',
-                    width: 200,
-                    height: 200,
+                    width: pageWidh * 0.55,
+                    height: pageHeight * 0.25,
                     fit: BoxFit.cover,
                   ),
                 )
@@ -134,7 +189,11 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               Text(
                 album?.name ?? '',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.primary,
+                ),
               ),
 
               const SizedBox(height: 5),
@@ -143,17 +202,17 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               Text(
                 album?.artists?.firstOrNull?.name ?? '',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
+                style:
+                    TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
               ),
             ],
           ),
         ),
       );
 
-  //Widget _artistCard(FollowedArtistItem? artist) => Text(artist!.href!);
-
   Widget _artistCard(FollowedArtistItem? artist) => Container(
-        width: 220,
+        width: pageWidh * 0.55,
+        height: pageHeight * 0.3,
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Card(
           color: Colors.transparent,
@@ -170,8 +229,8 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
                     artist?.images?.firstOrNull?.url ?? '',
-                    width: 200,
-                    height: 200,
+                    width: pageWidh * 0.55,
+                    height: pageHeight * 0.25,
                     fit: BoxFit.cover,
                   ),
                 )
@@ -183,17 +242,59 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               Text(
                 artist?.name ?? '',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.primary,
+                ),
               ),
 
               const SizedBox(height: 5),
+            ],
+          ),
+        ),
+      );
 
-              // // Albüm Sanatçısı
-              // Text(
-              //   album?.artists?.firstOrNull?.name ?? '',
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
-              // ),
+  Widget _userPlaylistCard(UserPlaylistItem? userPlaylist) => Container(
+        width: pageWidh * 0.55,
+        height: pageHeight * 0.3,
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        child: Card(
+          color: Colors.transparent,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Albüm Resmi
+              if (userPlaylist?.images?.firstOrNull?.url != null)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    userPlaylist?.images?.firstOrNull?.url ?? '',
+                    width: pageWidh * 0.55,
+                    height: pageHeight * 0.25,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              else
+                const SizedBox.shrink(),
+
+              const SizedBox(height: 10),
+
+              Text(
+                userPlaylist?.name ?? '',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+
+              const SizedBox(height: 5),
             ],
           ),
         ),
@@ -208,8 +309,8 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Container(
-              width: 200,
-              height: 300,
+              width: pageWidh * 0.55,
+              height: pageHeight * 0.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.white,

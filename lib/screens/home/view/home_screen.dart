@@ -5,6 +5,7 @@ import 'package:musicify/base/base_state.dart';
 import 'package:musicify/data/interfaces/jsonable_interface.dart';
 import 'package:musicify/data/models/followed_artist_item.dart';
 import 'package:musicify/data/models/item_new_realeases.dart';
+import 'package:musicify/data/models/user_playlist_item.dart';
 import 'package:musicify/screens/home/cubit/home_cubit.dart';
 import 'package:musicify_widgets/musicify_widgets.dart';
 import 'package:shimmer/shimmer.dart';
@@ -34,7 +35,8 @@ class HomeScreenView extends StatefulWidget {
   State<HomeScreenView> createState() => _HomeScreenViewState();
 }
 
-final class _HomeScreenViewState extends BaseState<HomeScreenView, HomeCubit> with HomeScreenWidgets {
+final class _HomeScreenViewState extends BaseState<HomeScreenView, HomeCubit>
+    with HomeScreenWidgets {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: _appBar(),

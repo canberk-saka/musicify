@@ -19,7 +19,8 @@
     "passwordLength":"Password must be at least 6 characters long",
     "invalidEmail":"Invalid email",
     "newReleases":"New Releases",
-    "followedArtists":"Followed Artists"
+    "followedArtists":"Followed Artists",
+    "usersPlaylist" : "Your Playlists"
     
 
     

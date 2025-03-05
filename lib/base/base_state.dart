@@ -5,7 +5,8 @@ import 'package:musicify/base/base_cubit.dart';
 import 'package:musicify/l10n/l10n.dart';
 
 ///State için base class
-abstract base class BaseState<T extends StatefulWidget, R extends BaseCubit<Equatable>> extends State<T> {
+abstract base class BaseState<T extends StatefulWidget,
+    R extends BaseCubit<Equatable>> extends State<T> {
   ///read çağırma metodu
   R get read => context.read<R>();
 
@@ -14,6 +15,12 @@ abstract base class BaseState<T extends StatefulWidget, R extends BaseCubit<Equa
 
   ///Localizations metodu
   AppLocalizations get l10n => AppLocalizations.of(context);
+
+  ///Sayfa yüksekliği
+  double get pageHeight => MediaQuery.sizeOf(context).height;
+
+  ///Sayfa genişliği
+  double get pageWidh => MediaQuery.sizeOf(context).width;
 
   @override
   void initState() {

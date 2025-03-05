@@ -18,7 +18,8 @@
   "passwordLength" : "Şifre en az 6 karakter uzunluğunda olmalıdır", 
   "invalidEmail" : "Geçersiz e-posta",
   "newReleases" : "Yeni Çıkanlar",
-  "followedArtists" : "Takip Edilen Sanatçılar"
+  "followedArtists" : "Takip Edilen Sanatçılar",
+  "usersPlaylist" : "Çalma Listeseriniz"
 
   
 

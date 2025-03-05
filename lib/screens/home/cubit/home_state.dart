@@ -12,6 +12,7 @@ final class HomeState extends Equatable {
     this.user,
     this.albums,
     this.artist,
+    this.topItemInfo, // TODO(canberk): Burası silinecek
   });
 
   ///Kullanıcı bilgilerinin tutulduğu değişken
@@ -29,6 +30,9 @@ final class HomeState extends Equatable {
   ///Sayfanın yüklenip yüklenmediğini tutar
   final bool? isLoading;
 
+  ///Top item bilgilerinin tutulduğu değişken
+  final TopItemInfo? topItemInfo; // TODO(canberk): Burası silinecek
+
   ///Kullanıcı bilgilerini güncelle
   HomeState copyWith({
     ValueGetter<User?>? user,
@@ -36,6 +40,7 @@ final class HomeState extends Equatable {
     ValueGetter<UserPlaylists?>? userPlaylist,
     ValueGetter<Artist?>? artist,
     ValueGetter<bool?>? isLoading,
+    ValueGetter<TopItemInfo?>? topItemInfo, // TODO(canberk): Burası silinecek
   }) =>
       HomeState(
         user: user?.call() ?? this.user,
@@ -43,8 +48,10 @@ final class HomeState extends Equatable {
         userPlaylists: userPlaylist?.call() ?? userPlaylists,
         artist: artist?.call() ?? this.artist,
         isLoading: isLoading?.call() ?? this.isLoading,
+        topItemInfo: topItemInfo?.call() ?? this.topItemInfo,
       );
 
-  @override
-  List<Object?> get props => [user, albums, userPlaylists, artist, isLoading];
+  @override // TODO(canberk): Burası silinecek
+  List<Object?> get props =>
+      [user, albums, userPlaylists, artist, isLoading, topItemInfo];
 }

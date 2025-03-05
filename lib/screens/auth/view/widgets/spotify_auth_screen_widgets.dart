@@ -5,19 +5,24 @@ base mixin SpotifyAuthScreenWidgets on State<SpotifyAuthScreen> {
   ///Code challenge üreten fonksiyon
   String generateCodeChallenge(String codeVerifier) {
     // 1. Code Verifier'ı SHA-256 ile hash'le
-    final bytes = utf8.encode(codeVerifier); // Verifier'ı UTF-8'le byte dizisine çevir
+    final bytes =
+        utf8.encode(codeVerifier); // Verifier'ı UTF-8'le byte dizisine çevir
     final digest = sha256.convert(bytes); // SHA-256 hash işlemi yap
 
     // 2. Hash'ı Base64 formatına dönüştür
     final base64String = base64.encode(digest.bytes); // Base64 kodlama
 
     // 3. URL güvenli hale getirmek için karakterleri değiştir
-    return base64String.replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
+    return base64String
+        .replaceAll('+', '-')
+        .replaceAll('/', '_')
+        .replaceAll('=', '');
   }
 
   ///Code verifier üreten fonksiyon
   static String generateCodeVerifier(int length) {
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const possible =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     final random = Random();
     final text = StringBuffer();
 
@@ -41,13 +46,16 @@ base mixin SpotifyAuthScreenWidgets on State<SpotifyAuthScreen> {
   final String redirectUri = Env.redirectUri;
 
   ///Spotify scope'larını tutan değişken
-  final String scope = 'user-read-private user-read-email user-follow-read';
+  final String scope =
+      'user-read-private user-read-email user-follow-read playlist-read-private user-top-read';
 
   /// Rastgele string üreten fonksiyon
   String generateRandomString(int length) {
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     final random = Random();
-    return List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
+    return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+        .join();
   }
 
   Future<void> _launchSpotifyAuth() async {

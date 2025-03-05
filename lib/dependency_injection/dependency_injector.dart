@@ -6,6 +6,7 @@ import 'package:musicify/data/datasources/remote/artist_api_manager.dart';
 import 'package:musicify/data/datasources/remote/auth_api_manager.dart';
 import 'package:musicify/data/datasources/remote/firebase/firebase_auth_manager.dart';
 import 'package:musicify/data/datasources/remote/playlist_api_manager.dart';
+import 'package:musicify/data/datasources/remote/top_item_api_manager.dart';
 import 'package:musicify/data/datasources/remote/user_api_manager.dart';
 import 'package:musicify/dependency_injection/interface/injectable_interface.dart';
 
@@ -21,10 +22,13 @@ abstract final class DependencyInjector {
     await lazyRegisterer(FirebaseAuthManager());
     await lazyRegisterer(PlaylistApiManager());
     await lazyRegisterer(ArtistApiManager());
+    await lazyRegisterer(TopItemApiManager());
   }
 
   ///Bağımlılıkları kontrol etme işlemi
-  static Future<void> lazyRegisterer<T extends InjectableInterface>(T object) async {
+  static Future<void> lazyRegisterer<T extends InjectableInterface>(
+    T object,
+  ) async {
     try {
       if (_getIt.isRegistered<T>()) {
         await reset<T>();
