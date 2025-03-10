@@ -6,6 +6,8 @@ import 'package:musicify/data/interfaces/jsonable_interface.dart';
 import 'package:musicify/data/models/followed_artist_item.dart';
 import 'package:musicify/data/models/item_new_realeases.dart';
 import 'package:musicify/data/models/user_playlist_item.dart';
+import 'package:musicify/navigation/app_router.dart';
+import 'package:musicify/navigation/app_routes.dart';
 import 'package:musicify/screens/home/cubit/home_cubit.dart';
 import 'package:musicify_widgets/musicify_widgets.dart';
 import 'package:shimmer/shimmer.dart';
@@ -41,5 +43,6 @@ final class _HomeScreenViewState extends BaseState<HomeScreenView, HomeCubit>
   Widget build(BuildContext context) => Scaffold(
         appBar: _appBar(),
         body: _body(),
+        floatingActionButton: _floatingActionButton(),
       );
 }

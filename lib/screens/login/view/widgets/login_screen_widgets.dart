@@ -9,7 +9,11 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
   ///Şifre ve email doğruluğuna bakar
   bool validateFields(String password, String email) {
     if (password.isEmpty || email.isEmpty) {
-      DialogManager.showSnackBar(context, message: l10n.emptyFields, color: Colors.red);
+      DialogManager.showSnackBar(
+        context,
+        message: l10n.emptyFields,
+        color: Colors.red,
+      );
 
       return false;
     }
@@ -63,7 +67,7 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                       controller: _passwordController,
                       labelText: l10n.password,
                       isObsecure: state.isObscure,
-                      changeObscure: () => read.changeObscure(),
+                      changeObscure: () => getCubit.changeObscure(),
                       icon: Icon(
                         Icons.key,
                         color: theme.colorScheme.primary,
@@ -74,22 +78,35 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                     padding: const EdgeInsets.all(20),
                     child: ElevatedButton(
                       onPressed: () async {
-                        final isConfirm = validateFields(_emailController.text, _passwordController.text);
+                        final isConfirm = validateFields(
+                          _emailController.text,
+                          _passwordController.text,
+                        );
 
                         if (isConfirm) {
                           //DialogManager.showLoadingAlertDialog(context);
 
-                          await Future<void>.delayed(const Duration(seconds: 2));
+                          await Future<void>.delayed(
+                            const Duration(seconds: 2),
+                          );
                           try {
-                            final result = await DependencyInjector.read<FirebaseAuthManager>()
-                                .signInWithEmailAndPassword(_emailController.text, _passwordController.text);
+                            final result = await DependencyInjector.read<
+                                    FirebaseAuthManager>()
+                                .signInWithEmailAndPassword(
+                              _emailController.text,
+                              _passwordController.text,
+                            );
 
                             if (result?.user != null) {
                               await AppRouter.push(AppRoutes.spotifyAuth);
                               //DialogManager.closeLoadingAlertDialog();
                             }
                           } catch (e) {
-                            DialogManager.showSnackBar(AppRouter.getContext!, message: l10n.loginFailed, color: Colors.red);
+                            DialogManager.showSnackBar(
+                              AppRouter.getContext!,
+                              message: l10n.loginFailed,
+                              color: Colors.red,
+                            );
                           }
                         }
                       },
@@ -102,11 +119,16 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Center(child: Text(l10n.dontHaveAccount)),
-                  TextButton(
-                    onPressed: () {
-                      AppRouter.push(AppRoutes.signUp);
-                    },
-                    child: Text(l10n.signUp),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.viewInsetsOf(context).bottom,
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        AppRouter.push(AppRoutes.signUp);
+                      },
+                      child: Text(l10n.signUp),
+                    ),
                   ),
                 ],
               ),

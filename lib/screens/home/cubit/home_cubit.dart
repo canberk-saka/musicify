@@ -5,11 +5,9 @@ import 'package:musicify/data/datasources/remote/album_api_manager.dart';
 import 'package:musicify/data/datasources/remote/artist_api_manager.dart';
 import 'package:musicify/data/datasources/remote/auth_api_manager.dart';
 import 'package:musicify/data/datasources/remote/playlist_api_manager.dart';
-import 'package:musicify/data/datasources/remote/top_item_api_manager.dart';
 import 'package:musicify/data/datasources/remote/user_api_manager.dart';
 import 'package:musicify/data/models/followed_artist.dart';
 import 'package:musicify/data/models/new_releases_album.dart';
-import 'package:musicify/data/models/top_item_info.dart';
 import 'package:musicify/data/models/user.dart';
 import 'package:musicify/data/models/user_playlist.dart';
 import 'package:musicify/dependency_injection/dependency_injector.dart';
@@ -61,13 +59,5 @@ final class HomeCubit extends BaseCubit<HomeState> {
     state.copyWith(albums: () => null);
     emit(state.copyWith(isLoading: () => true));
     await getNewAlbums();
-  }
-
-// TODO(canberk): Burası silinecek
-  ///Top item getirme işlemi
-  Future<void> getTopItem() async {
-    final topItemInfo =
-        await DependencyInjector.read<TopItemApiManager>().getTopItem();
-    emit(state.copyWith(topItemInfo: () => topItemInfo));
   }
 }

@@ -9,14 +9,13 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
     super.initState();
     _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await read.getAuth();
-      await read.getUser();
-      await read.getTopItem();
+      await getCubit.getAuth();
+      await getCubit.getUser();
 
       await Future.wait([
-        //read.getNewAlbums(),
-        //read.getFollowedArtists(),
-        //read.getUsersPlaylist(),
+        getCubit.getNewAlbums(),
+        getCubit.getFollowedArtists(),
+        getCubit.getUsersPlaylist(),
       ]);
     });
   }
@@ -64,7 +63,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
 
   ///Home ekranı body'si
   Widget _body() => RefreshIndicator.adaptive(
-        onRefresh: () => read.refresh(),
+        onRefresh: () => getCubit.refresh(),
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           controller: _scrollController,
@@ -132,7 +131,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
                 ),
               ),
               SizedBox(
-                height: pageHeight * 0.33,
+                height: pageHeight * 0.40,
                 child: BlocBuilder<HomeCubit, HomeState>(
                   builder: (context, state) => state.isLoading!
                       ? _buildShimmerList()
@@ -147,6 +146,19 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
           ),
         ),
       );
+
+  Widget _floatingActionButton() => FloatingActionButton(
+        onPressed: () {
+          _scrollController.animateTo(
+            0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+          AppRouter.push(AppRoutes.wrap);
+        },
+        child: const Icon(Icons.arrow_upward),
+      );
+
   Widget _buildCardList<T extends JsonableInterface<T>>(
     HomeState state,
     List<T>? items,
@@ -158,7 +170,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
       );
 
   Widget _newReleaseCard(ItemNewRealeases? album) => Container(
-        width: pageWidh * 0.55,
+        width: pageWidht * 0.55,
         height: pageHeight * 0.3,
         margin: const EdgeInsets.symmetric(horizontal: 2),
         child: Card(
@@ -172,15 +184,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
             children: [
               // Albüm Resmi
               if (album?.images?.firstOrNull?.url != null)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    album?.images?.firstOrNull?.url ?? '',
-                    width: pageWidh * 0.55,
-                    height: pageHeight * 0.25,
-                    fit: BoxFit.cover,
-                  ),
-                )
+                cardImage(album?.images?.firstOrNull?.url ?? '')
               else
                 const SizedBox.shrink(),
 
@@ -210,8 +214,19 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
         ),
       );
 
+  ///Cardlarda gözükecek resimler
+  ClipRRect cardImage(String imageUrl) => ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.network(
+          imageUrl,
+          width: pageWidht * 0.55,
+          height: pageHeight * 0.25,
+          fit: BoxFit.cover,
+        ),
+      );
+
   Widget _artistCard(FollowedArtistItem? artist) => Container(
-        width: pageWidh * 0.55,
+        width: pageWidht * 0.55,
         height: pageHeight * 0.3,
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Card(
@@ -225,15 +240,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
             children: [
               // Albüm Resmi
               if (artist?.images?.firstOrNull?.url != null)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    artist?.images?.firstOrNull?.url ?? '',
-                    width: pageWidh * 0.55,
-                    height: pageHeight * 0.25,
-                    fit: BoxFit.cover,
-                  ),
-                )
+                cardImage(artist?.images?.firstOrNull?.url ?? '')
               else
                 const SizedBox.shrink(),
 
@@ -256,7 +263,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
       );
 
   Widget _userPlaylistCard(UserPlaylistItem? userPlaylist) => Container(
-        width: pageWidh * 0.55,
+        width: pageWidht * 0.55,
         height: pageHeight * 0.3,
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Card(
@@ -270,15 +277,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
             children: [
               // Albüm Resmi
               if (userPlaylist?.images?.firstOrNull?.url != null)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    userPlaylist?.images?.firstOrNull?.url ?? '',
-                    width: pageWidh * 0.55,
-                    height: pageHeight * 0.25,
-                    fit: BoxFit.cover,
-                  ),
-                )
+                cardImage(userPlaylist?.images?.firstOrNull?.url ?? '')
               else
                 const SizedBox.shrink(),
 
@@ -309,7 +308,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Container(
-              width: pageWidh * 0.55,
+              width: pageWidht * 0.55,
               height: pageHeight * 0.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),

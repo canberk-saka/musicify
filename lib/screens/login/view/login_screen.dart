@@ -34,9 +34,12 @@ final class LoginScreenView extends StatefulWidget {
   State<LoginScreenView> createState() => _LoginScreenViewState();
 }
 
-final class _LoginScreenViewState extends BaseState<LoginScreenView, LoginScreenCubit> with LoginScreenWidgets {
+final class _LoginScreenViewState
+    extends BaseState<LoginScreenView, LoginScreenCubit>
+    with LoginScreenWidgets {
   @override
   Widget build(BuildContext context) => Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: _appBar(),
         body: _body(),
       );

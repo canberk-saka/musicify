@@ -35,9 +35,11 @@ class SignUpScreenWiew extends StatefulWidget {
   State<SignUpScreenWiew> createState() => _SignUpScreenWiewState();
 }
 
-final class _SignUpScreenWiewState extends BaseState<SignUpScreenWiew, SignUpCubit> with SignUpScreenWidgets {
+final class _SignUpScreenWiewState
+    extends BaseState<SignUpScreenWiew, SignUpCubit> with SignUpScreenWidgets {
   @override
   Widget build(BuildContext context) => Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: _appBar(),
         body: _body(),
       );
