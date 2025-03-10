@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:musicify/constants/base_url_constants.dart';
 import 'package:musicify/constants/controller_constants.dart';
 import 'package:musicify/constants/static_variables.dart';
@@ -12,7 +10,8 @@ import 'package:musicify/env/env.dart';
 ///{@endtemplate}
 final class AuthApiManager extends BaseApiManager {
   ///{@macro authApiManager}
-  AuthApiManager() : super(BaseUrlConstants.authApiUrl, ControllerConstants.api);
+  AuthApiManager()
+      : super(BaseUrlConstants.authApiUrl, ControllerConstants.api);
 
   ///Auth olma işlemi
   Future<void> getAuth() async {
@@ -24,9 +23,8 @@ final class AuthApiManager extends BaseApiManager {
       'code_verifier': StaticVariables.codeVerifier,
     };
 
-    final response = await dioPost(ControllerConstants.token.url, Token(), data: params);
-    log('acces token');
-    log(response.accessToken.toString());
+    final response =
+        await dioPost(ControllerConstants.token.url, Token(), data: params);
     final accessToken = response.accessToken;
     StaticVariables.token = accessToken.toString();
   }

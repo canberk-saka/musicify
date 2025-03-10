@@ -6,12 +6,17 @@ import 'package:musicify/l10n/l10n.dart';
 
 ///State için base class
 abstract base class BaseState<T extends StatefulWidget,
-    R extends BaseCubit<Equatable>> extends State<T> {
+        R extends BaseCubit<Equatable>> extends State<T>
+    with TickerProviderStateMixin {
   ///read çağırma metodu
-  R get read => context.read<R>();
+  R get getCubit => context.read<R>();
 
   ///theme çağırma metodu
   ThemeData get theme => Theme.of(context);
+
+  ///Ekran yatayda mı?
+  bool get isLandscape =>
+      MediaQuery.of(context).orientation == Orientation.landscape;
 
   ///Localizations metodu
   AppLocalizations get l10n => AppLocalizations.of(context);
@@ -20,7 +25,7 @@ abstract base class BaseState<T extends StatefulWidget,
   double get pageHeight => MediaQuery.sizeOf(context).height;
 
   ///Sayfa genişliği
-  double get pageWidh => MediaQuery.sizeOf(context).width;
+  double get pageWidht => MediaQuery.sizeOf(context).width;
 
   @override
   void initState() {

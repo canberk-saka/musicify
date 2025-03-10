@@ -6,6 +6,7 @@ import 'package:musicify/screens/auth/view/spotify_auth.dart';
 import 'package:musicify/screens/home/view/home_screen.dart';
 import 'package:musicify/screens/login/view/login_screen.dart';
 import 'package:musicify/screens/sign_up/view/sign_up_screen.dart';
+import 'package:musicify/screens/wrap/view/wrap_screen.dart';
 
 ///Uygulamanın route işlemleri
 abstract final class AppRouter {
@@ -28,28 +29,39 @@ abstract final class AppRouter {
       GoRoute(
         path: AppRoutes.login.path,
         name: AppRoutes.login.name,
-        pageBuilder: (context, state) => const MaterialPage(child: LoginScreen()),
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: LoginScreen()),
       ),
       GoRoute(
         path: AppRoutes.signUp.path,
         name: AppRoutes.signUp.name,
-        pageBuilder: (context, state) => const MaterialPage(child: SignUpScreen()),
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: SignUpScreen()),
       ),
       GoRoute(
         path: AppRoutes.home.path,
         name: AppRoutes.home.name,
-        pageBuilder: (context, state) => const MaterialPage(child: HomeScreen()),
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: HomeScreen()),
       ),
       GoRoute(
         path: AppRoutes.spotifyAuth.path,
         name: AppRoutes.spotifyAuth.name,
-        pageBuilder: (context, state) => const MaterialPage(child: SpotifyAuthScreen()),
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: SpotifyAuthScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.wrap.path,
+        name: AppRoutes.wrap.name,
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: WrapScreen()),
       ),
     ],
   );
 
   ///Sayfaya geçme metodu
-  static Future<void> push(AppRoutes path) async => navigatorKey.currentContext?.pushNamed(path.name);
+  static Future<void> push(AppRoutes path) async =>
+      navigatorKey.currentContext?.pushNamed(path.name);
 
   ///Sayfadan çıkma metodu
   static Future<void> pop() async => navigatorKey.currentState?.pop();

@@ -10,7 +10,10 @@ enum AppRoutes {
   home('home'),
 
   ///spotify auth sayfası
-  spotifyAuth('spotify_auth');
+  spotifyAuth('spotify_auth'),
+
+  ///wrap sayfası
+  wrap('wrap');
 
   const AppRoutes(this.name);
 
