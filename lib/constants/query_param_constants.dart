@@ -12,13 +12,13 @@ enum QueryParamConstants {
   albums('/albums'),
 
   ///Orta dönem
-  middleTerm('/medium_term'),
+  mediumTerm('medium_term'),
 
   ///Kısa dönem
-  shortTerm('/short_term'),
+  shortTerm('short_term'),
 
   ///Uzun dönem
-  longTerm('/long_term');
+  longTerm('long_term');
 
   ///{@macro query_param_constants}
   const QueryParamConstants(this.value);
