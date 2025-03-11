@@ -38,9 +38,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 20,
-                backgroundImage:
-                    Image.network(state.user?.images?.firstOrNull?.url ?? '')
-                        .image,
+                backgroundImage: Image.network(state.user?.images?.firstOrNull?.url ?? '').image,
               ),
               Text(
                 state.user?.displayName ?? '',
@@ -183,10 +181,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Albüm Resmi
-              if (album?.images?.firstOrNull?.url != null)
-                cardImage(album?.images?.firstOrNull?.url ?? '')
-              else
-                const SizedBox.shrink(),
+              if (album?.images?.firstOrNull?.url != null) cardImage(album?.images?.firstOrNull?.url ?? '') else const SizedBox.shrink(),
 
               const SizedBox(height: 10),
 
@@ -206,8 +201,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
               Text(
                 album?.artists?.firstOrNull?.name ?? '',
                 textAlign: TextAlign.center,
-                style:
-                    TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
+                style: TextStyle(fontSize: 14, color: theme.colorScheme.onSurface),
               ),
             ],
           ),
@@ -239,10 +233,7 @@ base mixin HomeScreenWidgets on BaseState<HomeScreenView, HomeCubit> {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Albüm Resmi
-              if (artist?.images?.firstOrNull?.url != null)
-                cardImage(artist?.images?.firstOrNull?.url ?? '')
-              else
-                const SizedBox.shrink(),
+              if (artist?.images?.firstOrNull?.url != null) cardImage(artist?.images?.firstOrNull?.url ?? '') else const SizedBox.shrink(),
 
               const SizedBox(height: 10),
 

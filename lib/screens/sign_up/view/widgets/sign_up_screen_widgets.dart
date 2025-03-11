@@ -5,8 +5,7 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   ///Şifrelerin doğruluğuna bakar
   bool validateFields(String password, String confirmPassword, String email) {
@@ -77,72 +76,76 @@ base mixin SignUpScreenWidgets on BaseState<SignUpScreenWiew, SignUpCubit> {
                 ),
               ),
               const SizedBox(height: 30),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                spacing: 25,
-                children: [
-                  MusicifyTextField(
-                    color: theme.colorScheme.primary,
-                    controller: _emailController,
-                    labelText: l10n.eMail,
-                    icon: Icon(
-                      Icons.email,
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.viewInsetsOf(context).bottom,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 25,
+                  children: [
+                    MusicifyTextField(
                       color: theme.colorScheme.primary,
-                    ),
-                  ),
-                  BlocBuilder<SignUpCubit, SignUpState>(
-                    builder: (context, state) => MusicifyTextField.obscure(
-                      color: theme.colorScheme.primary,
-                      controller: _passwordController,
-                      changeObscure: () => getCubit.changeObscure(),
-                      isObsecure: state.isObscure,
-                      labelText: l10n.password,
+                      controller: _emailController,
+                      labelText: l10n.eMail,
                       icon: Icon(
-                        Icons.key,
+                        Icons.email,
                         color: theme.colorScheme.primary,
                       ),
                     ),
-                  ),
-                  BlocBuilder<SignUpCubit, SignUpState>(
-                    builder: (context, state) => MusicifyTextField.obscure(
-                      color: theme.colorScheme.primary,
-                      controller: _confirmPasswordController,
-                      changeObscure: () => getCubit.changeObscure(),
-                      isObsecure: state.isObscure,
-                      labelText: l10n.confirmPassword,
-                      icon: Icon(
-                        Icons.key,
+                    BlocBuilder<SignUpCubit, SignUpState>(
+                      builder: (context, state) => MusicifyTextField.obscure(
                         color: theme.colorScheme.primary,
+                        controller: _passwordController,
+                        changeObscure: () => getCubit.changeObscure(),
+                        isObsecure: state.isObscure,
+                        labelText: l10n.password,
+                        icon: Icon(
+                          Icons.key,
+                          color: theme.colorScheme.primary,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        final isConfirm = validateFields(
-                          _passwordController.text,
-                          _confirmPasswordController.text,
-                          _emailController.text,
-                        );
-                        if (isConfirm) {
-                          DialogManager.showSnackBar(
-                            context,
-                            message: l10n.registerSuccess,
-                            color: Colors.green,
-                          );
-                          DependencyInjector.read<FirebaseAuthManager>()
-                              .signUpWithEmailAndPassword(
-                            _emailController.text,
+                    BlocBuilder<SignUpCubit, SignUpState>(
+                      builder: (context, state) => MusicifyTextField.obscure(
+                        color: theme.colorScheme.primary,
+                        controller: _confirmPasswordController,
+                        changeObscure: () => getCubit.changeObscure(),
+                        isObsecure: state.isObscure,
+                        labelText: l10n.confirmPassword,
+                        icon: Icon(
+                          Icons.key,
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final isConfirm = validateFields(
                             _passwordController.text,
+                            _confirmPasswordController.text,
+                            _emailController.text,
                           );
-                          AppRouter.push(AppRoutes.spotifyAuth);
-                        }
-                      },
-                      child: Text(l10n.signUp),
+                          if (isConfirm) {
+                            DialogManager.showSnackBar(
+                              context,
+                              message: l10n.registerSuccess,
+                              color: Colors.green,
+                            );
+                            DependencyInjector.read<FirebaseAuthManager>().signUpWithEmailAndPassword(
+                              _emailController.text,
+                              _passwordController.text,
+                            );
+                            AppRouter.push(AppRoutes.spotifyAuth);
+                          }
+                        },
+                        child: Text(l10n.signUp),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

@@ -1,6 +1,5 @@
 import 'package:musicify/constants/base_url_constants.dart';
 import 'package:musicify/constants/controller_constants.dart';
-import 'package:musicify/constants/query_param_constants.dart';
 import 'package:musicify/data/datasources/remote/base_api_manager.dart';
 import 'package:musicify/data/models/track_top_item.dart';
 import 'package:musicify/data/models/user_top_item.dart';
@@ -13,29 +12,29 @@ final class TopItemApiManager extends BaseApiManager {
   TopItemApiManager() : super(BaseUrlConstants.spotifyBaseApiUrl, ControllerConstants.me);
 
   ///Kullanıcının en çok dinlediği şarkıları getirir
-  Future<UserTopItem> getTopItem({
-    required QueryParamConstants queryParamsConstants,
+  Future<UserTopItem> getArtistTopItem({
+    required String term,
   }) async {
     final response = await dioGet<UserTopItem>(
-      '/top/${queryParamsConstants.value}',
+      '/top/artists',
       UserTopItem(),
-      // queryParams: {
-      //   'type': 'tracks',
-      // },
+      queryParams: {
+        'time_range': term,
+      },
     );
     return UserTopItem.fromJson(response.toJson());
   }
 
   ///Çok dinlenen şarkıları getirir
   Future<TrackTopItem> getTracksTopItem({
-    required QueryParamConstants queryParamsConstants,
+    required String term,
   }) async {
     final response = await dioGet<TrackTopItem>(
-      '/top/${queryParamsConstants.value}',
+      '/top/tracks',
       TrackTopItem(),
-      // queryParams: {
-      //   'type': 'tracks',
-      // },
+      queryParams: {
+        'time_range': term,
+      },
     );
     return TrackTopItem.fromJson(response.toJson());
   }

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:musicify/data/interfaces/jsonable_interface.dart';
 import 'package:musicify/data/models/track_top_item_info.dart';
+import 'package:musicify/dependency_injection/interface/injectable_interface.dart';
 
 part 'generated/track_top_item.g.dart';
 
@@ -9,7 +10,7 @@ part 'generated/track_top_item.g.dart';
 ///{@template TrackTopItem}
 ///TrackTopItem model
 ///{@endtemplate}
-class TrackTopItem implements JsonableInterface<TrackTopItem> {
+class TrackTopItem implements JsonableInterface<TrackTopItem>, InjectableInterface {
   ///{@macro TrackTopItem}
   TrackTopItem({
     this.items,
@@ -57,4 +58,7 @@ class TrackTopItem implements JsonableInterface<TrackTopItem> {
 
   @override
   TrackTopItem fromJson(Map<String, dynamic> json) => TrackTopItem.fromJson(json);
+
+  @override
+  Future<void> load() async {}
 }

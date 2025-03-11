@@ -23,9 +23,6 @@ NewReleasesAlbum _$NewReleasesAlbumFromJson(Map<String, dynamic> json) =>
           ?.map((e) => ImageElements.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String?,
-      releaseDate: json['release_date'] == null
-          ? null
-          : DateTime.parse(json['release_date'] as String),
       releaseDatePrecision: json['release_date_precision'] as String?,
       type: json['type'] as String?,
       uri: json['uri'] as String?,
@@ -48,8 +45,6 @@ Map<String, dynamic> _$NewReleasesAlbumToJson(NewReleasesAlbum instance) =>
       if (instance.images?.map((e) => e.toJson()).toList() case final value?)
         'images': value,
       if (instance.name case final value?) 'name': value,
-      if (instance.releaseDate?.toIso8601String() case final value?)
-        'release_date': value,
       if (instance.releaseDatePrecision case final value?)
         'release_date_precision': value,
       if (instance.type case final value?) 'type': value,

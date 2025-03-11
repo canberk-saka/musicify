@@ -3,18 +3,43 @@ part of '../wrap_screen.dart';
 ///Wrap Sayfası Widget'ları
 base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
   late TabController _tabController;
+  final Set<String> _selectedPeriod = {'1 Ay'};
+  final CarouselSliderController _tracksCarouselController = CarouselSliderController();
+  final CarouselSliderController _artistsCarouselController = CarouselSliderController();
+
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await getCubit.getTracksTopItem();
-      _tabController.addListener(() async {
-        if (_tabController.index == 1) {
-          await getCubit.getArtistsTopItem();
-        }
-      });
+      await _fetchData(_selectedPeriod);
     });
+
+    _tabController.addListener(() async {
+      if (!_tabController.indexIsChanging) {
+        await _fetchData(_selectedPeriod);
+      }
+    });
+  }
+
+  Future<void> _fetchData(Set<String> period) async {
+    final term = _getSelectedTerm(period); // TODO(canberk): Burayı düzelt
+    if (_tabController.index == 0) {
+      await getCubit.getTracksTopItem(term);
+    } else {
+      await getCubit.getArtistsTopItem(term);
+    }
+  }
+
+  QueryParamConstants _getSelectedTerm(Set<String> period) {
+    switch (period.first) {
+      case '6 Ay':
+        return QueryParamConstants.mediumTerm;
+      case '1 Yıl':
+        return QueryParamConstants.longTerm;
+      default:
+        return QueryParamConstants.shortTerm;
+    }
   }
 
   @override
@@ -24,16 +49,38 @@ base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
   }
 
   AppBar _appBar() => AppBar(
-        title: const Text('Wrap Screen'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(4),
+            child: Center(
+              child: SizedBox(
+                height: pageHeight * 0.20,
+                width: pageWidht * 0.7,
+                child: BlocBuilder<WrapCubit, WrapState>(
+                  builder: (context, state) => SegmentedButton(
+                    segments: const [
+                      ButtonSegment(value: '1 Ay', label: Text('1 Ay')),
+                      ButtonSegment(value: '6 Ay', label: Text('6 Ay')),
+                      ButtonSegment(value: '1 Yıl', label: Text('1 Yıl')),
+                    ],
+                    selected: state.period ?? _selectedPeriod,
+                    onSelectionChanged: (Set<String> newSelection) async {
+                      if (newSelection.isNotEmpty) {
+                        await getCubit.changePeriod(newSelection);
+                        await _fetchData(newSelection);
+                      }
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
-            Tab(
-              child: Text('Şarkılar'),
-            ),
-            Tab(
-              child: Text('Sanatçılar'),
-            ),
+            Tab(child: Text('Şarkılar')),
+            Tab(child: Text('Sanatçılar')),
           ],
         ),
       );
@@ -46,9 +93,7 @@ base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
               if (state.trackTopItemInfo == null) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                return Center(
-                  child: _buildTracksCarousel(state),
-                );
+                return Center(child: _buildTracksCarousel(state));
               }
             },
           ),
@@ -57,17 +102,15 @@ base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
               if (state.artistTopItemInfo == null) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                return Center(
-                  child: _buildArtistsCarousel(state),
-                );
+                return Center(child: _buildArtistsCarousel(state));
               }
             },
           ),
         ],
       );
 
-  CarouselSlider _buildArtistsCarousel(WrapState state) =>
-      CarouselSlider.builder(
+  CarouselSlider _buildArtistsCarousel(WrapState state) => CarouselSlider.builder(
+        carouselController: _artistsCarouselController,
         options: CarouselOptions(
           height: isLandscape ? pageHeight * 0.8 : pageHeight * 0.6,
           autoPlay: true,
@@ -121,8 +164,8 @@ base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
         ),
       );
 
-  CarouselSlider _buildTracksCarousel(WrapState state) =>
-      CarouselSlider.builder(
+  CarouselSlider _buildTracksCarousel(WrapState state) => CarouselSlider.builder(
+        carouselController: _tracksCarouselController,
         options: CarouselOptions(
           height: isLandscape ? pageHeight * 0.8 : pageHeight * 0.6,
           autoPlay: true,

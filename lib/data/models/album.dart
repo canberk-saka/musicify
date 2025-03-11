@@ -22,7 +22,7 @@ class NewReleasesAlbum implements JsonableInterface<NewReleasesAlbum> {
     this.id,
     this.images,
     this.name,
-    this.releaseDate,
+    //this.releaseDate,
     this.releaseDatePrecision,
     this.type,
     this.uri,
@@ -66,8 +66,8 @@ class NewReleasesAlbum implements JsonableInterface<NewReleasesAlbum> {
   String? name;
 
   ///Albümün çıkış tarihi
-  @JsonKey(name: 'release_date')
-  DateTime? releaseDate;
+  //@JsonKey(name: 'release_date')
+  //DateTime? releaseDate;
 
   ///Albümün çıkış tarihi hassasiyeti
   @JsonKey(name: 'release_date_precision')

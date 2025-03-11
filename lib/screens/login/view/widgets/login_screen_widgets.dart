@@ -90,9 +90,7 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                             const Duration(seconds: 2),
                           );
                           try {
-                            final result = await DependencyInjector.read<
-                                    FirebaseAuthManager>()
-                                .signInWithEmailAndPassword(
+                            final result = await DependencyInjector.read<FirebaseAuthManager>().signInWithEmailAndPassword(
                               _emailController.text,
                               _passwordController.text,
                             );
@@ -115,22 +113,25 @@ base mixin LoginScreenWidgets on BaseState<LoginScreenView, LoginScreenCubit> {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: Text(l10n.dontHaveAccount)),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      bottom: MediaQuery.viewInsetsOf(context).bottom,
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.viewInsetsOf(context).bottom,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: Text(l10n.dontHaveAccount)),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: TextButton(
+                        onPressed: () {
+                          AppRouter.push(AppRoutes.signUp);
+                        },
+                        child: Text(l10n.signUp),
+                      ),
                     ),
-                    child: TextButton(
-                      onPressed: () {
-                        AppRouter.push(AppRoutes.signUp);
-                      },
-                      child: Text(l10n.signUp),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

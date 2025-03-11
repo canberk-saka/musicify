@@ -17,17 +17,21 @@ final class WrapCubit extends BaseCubit<WrapState> {
   WrapCubit() : super(const WrapState());
 
   ///Top item getirme işlemi
-  Future<void> getTracksTopItem() async {
-    final tracksTopItemInfo = await DependencyInjector.read<TopItemApiManager>()
-        .getTracksTopItem(queryParamsConstants: QueryParamConstants.tracks);
+  Future<TrackTopItem> getTracksTopItem(QueryParamConstants term) async {
+    final tracksTopItemInfo = await DependencyInjector.read<TopItemApiManager>().getTracksTopItem(term: term.value);
     emit(state.copyWith(tracksTopItemInfo: () => tracksTopItemInfo));
+    return tracksTopItemInfo;
   }
 
   ///Top item getirme işlemi
-  Future<void> getArtistsTopItem() async {
-    final artistsTopItemInfo =
-        await DependencyInjector.read<TopItemApiManager>()
-            .getTopItem(queryParamsConstants: QueryParamConstants.artists);
+  Future<UserTopItem> getArtistsTopItem(QueryParamConstants term) async {
+    final artistsTopItemInfo = await DependencyInjector.read<TopItemApiManager>().getArtistTopItem(term: term.value);
     emit(state.copyWith(artistTopItemInfo: () => artistsTopItemInfo));
+    return artistsTopItemInfo;
+  }
+
+  ///Segmented Button'daki tıklanma işlemi
+  Future<void> changePeriod(Set<String> period) async {
+    emit(state.copyWith(period: period));
   }
 }
