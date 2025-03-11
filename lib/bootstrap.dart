@@ -3,7 +3,8 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:musicify/dependency_injection/dependency_injector.dart';
 import 'package:musicify/firebase_options.dart';
 
@@ -38,6 +39,13 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await DependencyInjector.init();
   // Add cross-flavor configuration here
   WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.black,
+    ),
+  );
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
