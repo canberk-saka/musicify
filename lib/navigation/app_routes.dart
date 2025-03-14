@@ -13,7 +13,13 @@ enum AppRoutes {
   spotifyAuth('spotify_auth'),
 
   ///wrap sayfası
-  wrap('wrap');
+  wrap('wrap'),
+
+  ///şarkı listsi sayfası
+  tracksList('tracks_ist'),
+
+  ///sanatçı listesi sayfası
+  artistsList('artists_list');
 
   const AppRoutes(this.name);
 
