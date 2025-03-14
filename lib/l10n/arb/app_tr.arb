@@ -19,7 +19,11 @@
   "invalidEmail" : "Geçersiz e-posta",
   "newReleases" : "Yeni Çıkanlar",
   "followedArtists" : "Takip Edilen Sanatçılar",
-  "usersPlaylist" : "Çalma Listeseriniz"
+  "usersPlaylist" : "Çalma Listeseriniz",
+  "seeFullList" : "Tüm Listeyi Gör",
+  "tracks" : "Şarkılar",
+  "artists" : "Sanatçılar"
+
 
   
 

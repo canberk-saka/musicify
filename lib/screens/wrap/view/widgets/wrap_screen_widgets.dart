@@ -78,9 +78,9 @@ base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
         ],
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(child: Text('Şarkılar')),
-            Tab(child: Text('Sanatçılar')),
+          tabs: [
+            Tab(child: Text(l10n.tracks)),
+            Tab(child: Text(l10n.artists)),
           ],
         ),
       );
@@ -93,7 +93,24 @@ base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
               if (state.trackTopItemInfo == null) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                return Center(child: _buildTracksCarousel(state));
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Center(child: _buildTracksCarousel(state)),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          if (state.trackTopItemInfo != null) {
+                            await AppRouter.pushWithParams(AppRoutes.tracksList, state.trackTopItemInfo!);
+                          }
+                        },
+                        child: Text(l10n.seeFullList),
+                      ),
+                    ),
+                  ],
+                );
               }
             },
           ),
@@ -102,7 +119,24 @@ base mixin WrapScreenWidgets on BaseState<WrapScreenView, WrapCubit> {
               if (state.artistTopItemInfo == null) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                return Center(child: _buildArtistsCarousel(state));
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Center(child: _buildArtistsCarousel(state)),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          if (state.artistTopItemInfo != null) {
+                            await AppRouter.pushWithParams(AppRoutes.artistsList, state.artistTopItemInfo!);
+                          }
+                        },
+                        child: Text(l10n.seeFullList),
+                      ),
+                    ),
+                  ],
+                );
               }
             },
           ),

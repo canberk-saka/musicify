@@ -20,7 +20,11 @@
     "invalidEmail":"Invalid email",
     "newReleases":"New Releases",
     "followedArtists":"Followed Artists",
-    "usersPlaylist" : "Your Playlists"
+    "usersPlaylist" : "Your Playlists",
+    "seeFullList" : "See Full List" ,
+    "tracks" : "Tracks",
+    "artists" : "Artists"
+
     
 
     

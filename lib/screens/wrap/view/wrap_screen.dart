@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:musicify/base/base_state.dart';
 import 'package:musicify/constants/query_param_constants.dart';
+import 'package:musicify/navigation/app_router.dart';
+import 'package:musicify/navigation/app_routes.dart';
 import 'package:musicify/screens/wrap/cubit/wrap_cubit.dart';
 
 part 'widgets/wrap_screen_widgets.dart';
