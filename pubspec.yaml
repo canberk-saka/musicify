@@ -32,7 +32,7 @@ dependencies:
     path: modules/musicify_widgets
   realm: ^20.0.1
   shimmer: ^3.0.0  
-  talker_dio_logger: ^4.6.7  
+  talker_dio_logger: ^4.7.1  
   url_launcher: ^6.3.1
   
 
