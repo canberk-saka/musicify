@@ -930,26 +930,26 @@ packages:
     dependency: transitive
     description:
       name: talker
-      sha256: "9fb27d8f6eba24687a738359d72addbcdd1a8b27a4e820dffe98a5202c7b1526"
+      sha256: cbea2c5a10a3d9225e58b5fef4092d6ec00f1fcda43f92a33dfbab1ea7ffca79
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.7"
+    version: "4.7.2"
   talker_dio_logger:
     dependency: "direct main"
     description:
       name: talker_dio_logger
-      sha256: e77340a611a131b63990bd69aac9cf384a429256893857427f493c3505f2401e
+      sha256: "81127ef1afa516e6ce8a83a4b692ca2c8d9ef2e7bf4e4de89526abe4c843826a"
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.7"
+    version: "4.7.2"
   talker_logger:
     dependency: transitive
     description:
       name: talker_logger
-      sha256: "96f2a2739c74973f777d61c21b55691cc452a3e9f9302a06373abc5fb4221360"
+      sha256: "416b4d726358764c68c2de23c11bf9f146f2608ac244ec2ed9da741f89c49a6e"
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.7"
+    version: "4.7.2"
   tar:
     dependency: transitive
     description:
